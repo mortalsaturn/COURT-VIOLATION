@@ -1,0 +1,24 @@
+<type>(scope): <short summary>
+
+<body>
+
+<footer>
+
+———
+
+Types (choose one)
+feat → new feature
+fix → bug fix
+docs → documentation only
+style → formatting, missing semi-colons, no code change
+refactor → code change that neither fixes a bug nor adds a feature
+perf → performance improvement
+test → add or correct tests
+chore → maintenance, build tasks, dependency updates
+
+Rules
+Summary ≤ 50 chars, imperative mood (e.g., fix bug, not fixed bug).
+First letter lowercase, no period at end.
+Wrap body at 72 chars per line.
+Body explains what and why, not how.
+Footer for breaking changes (BREAKING CHANGE:) or issue refs (Closes #123).
