@@ -24,4 +24,9 @@ public class BallDirection : MonoBehaviour
             Debug.DrawRay(transform.position, direction * 150, Color.red);
         }
     }
+
+    void OnTriggerEnter(Collider trigger)
+    {
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("Hitbox")) { }
+    }
 }
