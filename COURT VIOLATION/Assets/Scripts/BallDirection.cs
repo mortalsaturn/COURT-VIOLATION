@@ -27,6 +27,11 @@ public class BallDirection : MonoBehaviour
 
     void OnTriggerEnter(Collider trigger)
     {
-        if (trigger.gameObject.layer == LayerMask.NameToLayer("Hitbox")) { }
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("Hitbox"))
+        {
+            GameObject hitbox = trigger.gameObject;
+            Hitbox hitboxScript = trigger.gameObject.GetComponent<Hitbox>();
+            hitboxScript.Launch(rigidbody, hitbox.transform.forward, hitboxScript.launchVelocity);
+        }
     }
 }
