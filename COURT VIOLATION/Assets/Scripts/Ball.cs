@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class BallDirection : MonoBehaviour
+public class Ball : MonoBehaviour
 {
     Rigidbody rigidbody;
+    public string lastHitter;
 
     void Start()
     {
@@ -31,7 +32,16 @@ public class BallDirection : MonoBehaviour
         {
             GameObject hitbox = trigger.gameObject;
             Hitbox hitboxScript = trigger.gameObject.GetComponent<Hitbox>();
-            hitboxScript.Launch(rigidbody, hitbox.transform.forward, hitboxScript.launchVelocity);
+
+            if (lastHitter != hitboxScript.parent)
+            {
+                hitboxScript.Launch(
+                    rigidbody,
+                    hitbox.transform.forward,
+                    hitboxScript.launchVelocity
+                );
+                lastHitter = hitboxScript.parent;
+            }
         }
     }
 }
