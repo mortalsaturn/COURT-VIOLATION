@@ -33,14 +33,14 @@ public class Ball : MonoBehaviour
             GameObject hitbox = trigger.gameObject;
             Hitbox hitboxScript = trigger.gameObject.GetComponent<Hitbox>();
 
-            if (lastHitter != hitboxScript.parent)
+            if (lastHitter != hitboxScript.user)
             {
                 hitboxScript.Launch(
                     rigidbody,
                     hitbox.transform.forward,
                     hitboxScript.launchVelocity
                 );
-                lastHitter = hitboxScript.parent;
+                lastHitter = hitboxScript.user;
             }
         }
     }

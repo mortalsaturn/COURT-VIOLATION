@@ -3,11 +3,11 @@ using UnityEngine;
 public class Hitbox : MonoBehaviour
 {
     public float launchVelocity;
-    public string parent;
+    public string user;
 
     void Start()
     {
-        parent = transform.parent.gameObject.name;
+        user = transform.root.gameObject.name;
     }
 
     void Update()
