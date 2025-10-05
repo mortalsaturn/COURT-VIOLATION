@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Match Scene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: d77eb24110be74423ad07bfd37a85fe3
+  - enabled: 1
+    path: Assets/Scenes/Scene 1.unity
+    guid: 7f06b86d0014f432d971b7d9b2e92502
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: d57df6c1944b6479eaa0d2f6dbc6d33b
+  - enabled: 1
+    path: Assets/Scenes/Training.unity
+    guid: 73d93af6d522d4230b31c9d8c91079cd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
