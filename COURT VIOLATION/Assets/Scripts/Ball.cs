@@ -44,4 +44,9 @@ public class Ball : MonoBehaviour
             }
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        lastHitter = collision.gameObject.name;
+    }
 }
