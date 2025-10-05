@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class Swing : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Animator animator;
+
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space");
+            animator.SetBool("basicSwing", true);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            animator.SetBool("basicSwing", false);
+        }
     }
 }
