@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Far Hitbox
       objectReference: {fileID: 0}
+    - target: {fileID: 1978602214894725238, guid: 9fb35a84383f442518116eed01fb22ba, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6112079928769623533, guid: 9fb35a84383f442518116eed01fb22ba, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3
@@ -452,6 +456,10 @@ PrefabInstance:
     - target: {fileID: 33788773734535507, guid: 9fb35a84383f442518116eed01fb22ba, type: 3}
       propertyPath: m_Name
       value: Close Hitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978602214894725238, guid: 9fb35a84383f442518116eed01fb22ba, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6112079928769623533, guid: 9fb35a84383f442518116eed01fb22ba, type: 3}
       propertyPath: m_LocalScale.x
@@ -1091,10 +1099,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4776960144814242308, guid: 94b31a2c237364a4fa9174c459ffc318, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2058796771}
+    - targetCorrespondingSourceObject: {fileID: 4776960144814242308, guid: 94b31a2c237364a4fa9174c459ffc318, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2058796764}
     - targetCorrespondingSourceObject: {fileID: 4776960144814242308, guid: 94b31a2c237364a4fa9174c459ffc318, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2058796767}
+    - targetCorrespondingSourceObject: {fileID: 4776960144814242308, guid: 94b31a2c237364a4fa9174c459ffc318, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2058796765}
+    - targetCorrespondingSourceObject: {fileID: 4776960144814242308, guid: 94b31a2c237364a4fa9174c459ffc318, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2058796766}
   m_SourcePrefab: {fileID: 100100000, guid: 94b31a2c237364a4fa9174c459ffc318, type: 3}
 --- !u!4 &2058796760 stripped
 Transform:
@@ -1135,6 +1152,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ba328bec22bd54389739f3428c1a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  animator: {fileID: 0}
+--- !u!114 &2058796766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007972718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48370fe4426ccbc4fbbdf6b536698035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Movement
+  speed: 5
+  move: {fileID: 3646512122204011770, guid: ba29af0f8ea47694baf1055cdd4efd32, type: 3}
+--- !u!114 &2058796767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007972718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: ba29af0f8ea47694baf1055cdd4efd32, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!54 &2058796771
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007972718}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &2084256817
 GameObject:
   m_ObjectHideFlags: 0
