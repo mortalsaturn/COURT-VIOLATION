@@ -8,26 +8,33 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "0af50524-3f0f-42f6-943e-425b01367d62",
                     "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "60cee312-95ea-4f5a-956f-8e5e12f3f8a1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quick Step",
+                    "type": "Button",
+                    "id": "0497ee56-e679-45f5-8bcd-0bf5d43928a9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap(tapDelay=0.3)",
                     "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "b418c198-30d2-4582-859b-d4ff9c118a97",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "3D Vector",
                     "id": "0a408e7a-3734-4fd7-8e82-8006ad1e9e05",
@@ -104,6 +111,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "aa33d9fa-293f-4f35-a85b-0baed37ccb78",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d417a1c8-ca69-483b-9efa-fde04cc0009d",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Quick Step",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
