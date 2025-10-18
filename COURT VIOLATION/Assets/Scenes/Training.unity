@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   speed: 5
-  move: {fileID: 3646512122204011770, guid: ba29af0f8ea47694baf1055cdd4efd32, type: 3}
+  inputActions: {fileID: 0}
 --- !u!114 &2058796767
 MonoBehaviour:
   m_ObjectHideFlags: 0
