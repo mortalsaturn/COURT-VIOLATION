@@ -1,130 +1,160 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
+[System.Serializable]
+public class DialogueNode
+{
+    [TextArea(2, 5)] public string npcText;
+    [TextArea(2, 5)] public string playerText;
+
+    public bool isChoiceNode;
+    public string option1Text;
+    public string option2Text;
+    public int nextNodeForOption1 = -1;
+    public int nextNodeForOption2 = -1;
+
+    // For non-choice progression
+    public int nextNode = -1;
+}
+
 public class DialogueManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class CharacterDialogue
-    {
-        public string characterName;
-        public GameObject bubbleObject; // Speech bubble above the character
-        public TMP_Text dialogueText;   // TextMeshPro text inside the bubble
-    }
+    [Header("UI References")]
+    public TMP_Text npcTextBox;
+    public TMP_Text playerTextBox;
+    public Button option1Button;
+    public Button option2Button;
+    public TMP_Text option1Text;
+    public TMP_Text option2Text;
 
-    [Header("Characters")]
-    public CharacterDialogue persephone;
-    public CharacterDialogue lilith;
+    [Header("Dialogue Data")]
+    public DialogueNode[] dialogueNodes;
+    public float typingSpeed = 0.03f;
 
-    [Header("Dialogue Settings")]
-    public float typingSpeed = 0.03f; // Speed of the typewriter effect
-
-    [Header("Dialogue Lines")]
-    [TextArea(2, 5)]
-    public string[] dialogueLines; // Put your full conversation here
-
-    private int currentLineIndex = 0;
+    private int currentNodeIndex = 0;
     private bool isTyping = false;
+    private bool npcFinished = false;
+    private bool playerFinished = false;
+
     private Coroutine typingRoutine;
 
     void Start()
     {
-        HideAllBubbles();
-        if (dialogueLines.Length > 0)
-        {
-            ShowNextLine(); // Start conversation automatically
-        }
+        option1Button.onClick.AddListener(() => ChooseOption(1));
+        option2Button.onClick.AddListener(() => ChooseOption(2));
+
+        HideChoices();
+        DisplayNode();
     }
 
     void Update()
     {
-        // Click or tap to advance
         if (Input.GetMouseButtonDown(0))
         {
-            if (isTyping)
+            if (!isTyping && !dialogueNodes[currentNodeIndex].isChoiceNode)
             {
-                // Skip typing animation and show full line
-                StopCoroutine(typingRoutine);
-                FinishTyping();
-            }
-            else
-            {
-                ShowNextLine();
+                GoToNextNode();
             }
         }
     }
 
-    void ShowNextLine()
+    void DisplayNode()
     {
-        if (currentLineIndex >= dialogueLines.Length)
-        {
-            HideAllBubbles();
-            return;
-        }
+        DialogueNode node = dialogueNodes[currentNodeIndex];
 
-        string line = dialogueLines[currentLineIndex];
-        currentLineIndex++;
+        npcTextBox.text = "";
+        playerTextBox.text = "";
 
-        // Format: "Persephone: Hello there!"
-        string[] splitLine = line.Split(':');
-        if (splitLine.Length < 2)
-        {
-            Debug.LogWarning("Invalid line format. Use 'Character: Dialogue text'");
-            return;
-        }
+        HideChoices();
+        StopAllCoroutines();
 
-        string speakerName = splitLine[0].Trim();
-        string dialogueText = splitLine[1].Trim();
-
-        CharacterDialogue currentSpeaker = null;
-        if (speakerName.ToLower() == "persephone")
-            currentSpeaker = persephone;
-        else if (speakerName.ToLower() == "lilith")
-            currentSpeaker = lilith;
-        else
-        {
-            Debug.LogWarning("Unknown speaker name: " + speakerName);
-            return;
-        }
-
-        // Hide the other bubble
-        HideAllBubbles();
-        currentSpeaker.bubbleObject.SetActive(true);
-        currentSpeaker.dialogueText.text = "";
-
-        // Typewriter effect
-        typingRoutine = StartCoroutine(TypeLine(currentSpeaker.dialogueText, dialogueText));
+        // Start the NPC typewriter first
+        typingRoutine = StartCoroutine(TypeDialogue(node));
     }
 
-    IEnumerator TypeLine(TMP_Text textUI, string line)
+    IEnumerator TypeDialogue(DialogueNode node)
     {
+        // --- NPC dialogue ---
         isTyping = true;
-        foreach (char c in line)
+        npcFinished = false;
+
+        foreach (char c in node.npcText)
         {
-            textUI.text += c;
+            npcTextBox.text += c;
             yield return new WaitForSeconds(typingSpeed);
         }
+
+        npcFinished = true;
+        yield return new WaitForSeconds(0.3f); // pause before player text
+
+        // --- Player dialogue ---
+        if (!string.IsNullOrEmpty(node.playerText))
+        {
+            playerFinished = false;
+            foreach (char c in node.playerText)
+            {
+                playerTextBox.text += c;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+            playerFinished = true;
+        }
+
         isTyping = false;
+
+        // If this node has choices, show them after typing finishes
+        if (node.isChoiceNode)
+        {
+            ShowChoices(node);
+        }
     }
 
-    void FinishTyping()
+    void GoToNextNode()
     {
-        isTyping = false;
-        // Show the full current line instantly
-        string line = dialogueLines[currentLineIndex - 1];
-        string[] splitLine = line.Split(':');
-        string fullText = splitLine.Length > 1 ? splitLine[1].Trim() : "";
-        string speakerName = splitLine[0].Trim();
+        DialogueNode node = dialogueNodes[currentNodeIndex];
 
-        CharacterDialogue currentSpeaker = 
-            speakerName.ToLower() == "persephone" ? persephone : lilith;
+        if (node.isChoiceNode)
+            return; // Wait for player input on choices
 
-        currentSpeaker.dialogueText.text = fullText;
+        if (node.nextNode != -1)
+        {
+            currentNodeIndex = node.nextNode;
+            DisplayNode();
+        }
+        else
+        {
+            npcTextBox.text = "";
+            playerTextBox.text = "";
+            Debug.Log("Dialogue ended.");
+        }
     }
 
-    void HideAllBubbles()
+    void ShowChoices(DialogueNode node)
     {
-        persephone.bubbleObject.SetActive(false);
-        lilith.bubbleObject.SetActive(false);
+        option1Button.gameObject.SetActive(true);
+        option2Button.gameObject.SetActive(true);
+
+        option1Text.text = node.option1Text;
+        option2Text.text = node.option2Text;
+    }
+
+    void HideChoices()
+    {
+        option1Button.gameObject.SetActive(false);
+        option2Button.gameObject.SetActive(false);
+    }
+
+    void ChooseOption(int option)
+    {
+        DialogueNode node = dialogueNodes[currentNodeIndex];
+        HideChoices();
+
+        if (option == 1)
+            currentNodeIndex = node.nextNodeForOption1;
+        else
+            currentNodeIndex = node.nextNodeForOption2;
+
+        DisplayNode();
     }
 }
