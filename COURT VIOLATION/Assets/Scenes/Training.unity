@@ -279,7 +279,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -290,7 +290,7 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
   m_ShadowRadius: 0
-  m_ShadowAngle: 0
+  m_ShadowAngle: 90
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
@@ -303,7 +303,7 @@ Transform:
   m_GameObject: {fileID: 430472195}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0.02481791, y: 3.0591538, z: -0.04298589}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1174,7 +1174,6 @@ MonoBehaviour:
   sprintModifier: 1.5
   quickStepDistance: 3
   quickStepDuration: 0.15
-  stopDistance: 2
   ball: {fileID: 118508823}
 --- !u!114 &2058796767
 MonoBehaviour:
@@ -1249,6 +1248,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0497ee56-e679-45f5-8bcd-0bf5d43928a9
     m_ActionName: 'Gameplay/Quick Step[/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2058796765}
+        m_TargetAssemblyTypeName: Swing, Assembly-CSharp
+        m_MethodName: OnSwing
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c7134705-d1ed-4d64-94e1-e2d554b01195
+    m_ActionName: 'Gameplay/Swing[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Gameplay

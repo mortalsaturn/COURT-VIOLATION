@@ -1,24 +1,33 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Swing : MonoBehaviour
 {
     public Animator animator;
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    void Start() { }
+
+    public void OnSwing(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (context.performed)
         {
-            Debug.Log("Space");
-            animator.SetBool("basicSwing", true);
+            PerformSwing();
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+    }
+
+    private void PerformSwing()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (!stateInfo.IsName("BasicSwing"))
         {
-            animator.SetBool("basicSwing", false);
+            animator.SetTrigger("Swing");
         }
     }
 }
