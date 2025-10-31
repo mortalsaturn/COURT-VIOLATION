@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     private bool quickStepRequested,
         isQuickStepping;
 
-    public GameObject ball;
+    GameObject ball;
 
     void Awake()
     {
@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         baseColor = renderer.material.color;
+        ball = GameObject.FindGameObjectWithTag("Ball");
     }
 
     public void OnMove(InputAction.CallbackContext context)

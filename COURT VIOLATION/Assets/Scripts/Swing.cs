@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Swing : MonoBehaviour
 {
-    public Animator animator;
+    Animator animator;
     Ball ballInfo;
 
     void Awake()
