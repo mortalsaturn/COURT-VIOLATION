@@ -4,6 +4,7 @@ public class Ball : MonoBehaviour
 {
     Rigidbody rigidbody;
     public string lastHitter;
+    public Vector3 destination;
 
     void Start()
     {
@@ -18,11 +19,15 @@ public class Ball : MonoBehaviour
     public void FindDirection()
     {
         Vector3 velocity = rigidbody.linearVelocity;
-        Vector3 flatVelocity = new(velocity.x, 0f, velocity.z);
-        if (flatVelocity.sqrMagnitude > 0.0001f)
+
+        Vector3 direction = velocity.normalized;
+
+        Ray trajectoryRay = new(transform.position, direction);
+        RaycastHit hit;
+
+        if (Physics.Raycast(trajectoryRay, out hit))
         {
-            Vector3 direction = flatVelocity.normalized;
-            Debug.DrawRay(transform.position, direction * 150, Color.red);
+            destination = hit.point;
         }
     }
 
