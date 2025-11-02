@@ -39,7 +39,7 @@
                     "id": "c7134705-d1ed-4d64-94e1-e2d554b01195",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold,Tap",
                     "initialStateCheck": false
                 }
             ],
@@ -178,7 +178,7 @@
                 },
                 {
                     "name": "",
-                    "id": "9308e1ae-842e-4423-9b9e-72c8e97c1d1a",
+                    "id": "dc5b3851-d698-44c6-b229-44e9f4632ad8",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",

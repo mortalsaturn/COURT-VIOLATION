@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    public float launchVelocity;
+    public float baseVel,
+        launchVel,
+        maxVel;
     public string user;
 
     void Start()
