@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    public float launchVelocity;
+    public float baseVel,
+        launchVel,
+        maxVel;
     public string user;
 
     void Start()
@@ -10,10 +12,7 @@ public class Hitbox : MonoBehaviour
         user = transform.root.gameObject.name;
     }
 
-    void Update()
-    {
-        Debug.DrawRay(transform.position, transform.forward * 150, Color.pink);
-    }
+    void Update() { }
 
     public void Launch(Rigidbody rigidbody, Vector3 launchAngle, float launchVel)
     {

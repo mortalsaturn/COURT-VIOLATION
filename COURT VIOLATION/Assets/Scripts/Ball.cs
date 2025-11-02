@@ -1,13 +1,15 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Ball : MonoBehaviour
 {
-    Rigidbody rigidbody;
+    Rigidbody rb;
     public string lastHitter;
+    public Vector3 destination;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -17,12 +19,16 @@ public class Ball : MonoBehaviour
 
     public void FindDirection()
     {
-        Vector3 velocity = rigidbody.linearVelocity;
-        Vector3 flatVelocity = new(velocity.x, 0f, velocity.z);
-        if (flatVelocity.sqrMagnitude > 0.0001f)
+        Vector3 velocity = rb.linearVelocity;
+
+        Vector3 direction = velocity.normalized;
+
+        Ray trajectoryRay = new(transform.position, direction);
+        RaycastHit hit;
+
+        if (Physics.Raycast(trajectoryRay, out hit))
         {
-            Vector3 direction = flatVelocity.normalized;
-            Debug.DrawRay(transform.position, direction * 150, Color.red);
+            destination = hit.point;
         }
     }
 
@@ -35,11 +41,7 @@ public class Ball : MonoBehaviour
 
             if (lastHitter != hitboxScript.user)
             {
-                hitboxScript.Launch(
-                    rigidbody,
-                    hitbox.transform.forward,
-                    hitboxScript.launchVelocity
-                );
+                hitboxScript.Launch(rb, hitbox.transform.forward, hitboxScript.launchVel);
                 lastHitter = hitboxScript.user;
             }
         }

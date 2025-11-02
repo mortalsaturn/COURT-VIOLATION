@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "MultiTap(tapDelay=0.3)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Swing",
+                    "type": "Button",
+                    "id": "c7134705-d1ed-4d64-94e1-e2d554b01195",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold,Tap",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -58,7 +67,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "WASD",
                     "id": "94fe7b02-215b-4454-8fa3-3f93c898f117",
                     "path": "2DVector",
                     "interactions": "",
@@ -111,6 +120,72 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "Arrow Keys",
+                    "id": "b08e7552-7f30-4857-897a-11253ad014c2",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "0bb75721-c264-460a-930b-b2ebb8882dd7",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "00151606-17ed-44ca-afc4-088d95412504",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "5f514ba3-7d3c-4be2-bbfd-6cef028f2e42",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "4d218a98-d49a-4ee0-ab2d-9743a6b7e97f",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "dc5b3851-d698-44c6-b229-44e9f4632ad8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Swing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

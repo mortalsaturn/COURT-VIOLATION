@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Renderer))]
 public class Movement : MonoBehaviour
 {
     public float baseSpeed;
@@ -10,25 +11,24 @@ public class Movement : MonoBehaviour
     public float quickStepDistance,
         quickStepDuration;
 
-    Rigidbody rigidbody;
-    Renderer renderer;
+    Renderer rend;
     Color baseColor;
     private Vector3 moveDirection;
     private bool isSprinting;
     private bool quickStepRequested,
         isQuickStepping;
 
-    public GameObject ball;
+    GameObject ball;
 
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        renderer = GetComponent<Renderer>();
+        rend = GetComponent<Renderer>();
     }
 
     void Start()
     {
-        baseColor = renderer.material.color;
+        baseColor = rend.material.color;
+        ball = GameObject.FindGameObjectWithTag("Ball");
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -54,15 +54,15 @@ public class Movement : MonoBehaviour
     {
         if (isSprinting)
         {
-            renderer.material.color = Color.green;
+            rend.material.color = Color.green;
         }
         else if (isQuickStepping)
         {
-            renderer.material.color = Color.yellow;
+            rend.material.color = Color.yellow;
         }
         else
         {
-            renderer.material.color = baseColor;
+            rend.material.color = baseColor;
         }
     }
 
