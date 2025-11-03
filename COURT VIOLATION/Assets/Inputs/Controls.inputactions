@@ -34,9 +34,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Swing",
+                    "name": "Basic Swing",
                     "type": "Button",
                     "id": "c7134705-d1ed-4d64-94e1-e2d554b01195",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold,Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lob",
+                    "type": "Button",
+                    "id": "9c10252f-42cc-4898-b748-ce05ced2ea61",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold,Tap",
@@ -183,7 +192,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard",
-                    "action": "Swing",
+                    "action": "Basic Swing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82de1e5d-5ec4-40e3-986b-62de083529d1",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lob",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

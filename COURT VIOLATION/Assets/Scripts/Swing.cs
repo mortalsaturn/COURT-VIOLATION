@@ -62,6 +62,33 @@ public class Swing : MonoBehaviour
         }
     }
 
+    public void OnLob(InputAction.CallbackContext context)
+    {
+        if (context.interaction is HoldInteraction && context.performed)
+        {
+            if (chargeRoutine == null)
+            {
+                chargeRoutine = StartCoroutine(Charge());
+            }
+            isCharging = true;
+        }
+        if (context.interaction is HoldInteraction && context.canceled)
+        {
+            if (chargeRoutine != null)
+            {
+                StopCoroutine(chargeRoutine);
+                chargeRoutine = null;
+            }
+            Lob(Mathf.Min(hitboxes[0].baseVel + addedVelocity, hitboxes[0].maxVel));
+            addedVelocity = 0;
+            isCharging = false;
+        }
+        if (context.interaction is TapInteraction && context.started)
+        {
+            Lob(hitboxes[0].baseVel);
+        }
+    }
+
     private IEnumerator Charge()
     {
         while (true)
@@ -85,6 +112,22 @@ public class Swing : MonoBehaviour
         {
             animator.SetTrigger("Swing");
             animator.SetBool("isBallRight", ballInfo.destination.x >= transform.position.x);
+        }
+    }
+
+    private void Lob(float velocity)
+    {
+        Debug.Log("HB Vel: " + velocity);
+        foreach (var hb in hitboxes)
+        {
+            hb.launchVel = velocity;
+        }
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (!stateInfo.IsName("Lob"))
+        {
+            animator.SetTrigger("Lob");
         }
     }
 
