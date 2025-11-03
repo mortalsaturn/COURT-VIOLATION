@@ -39,7 +39,7 @@ public class Swing : MonoBehaviour
     {
         if (context.interaction is HoldInteraction && context.performed)
         {
-            if (chargeRoutine != null)
+            if (chargeRoutine == null)
             {
                 chargeRoutine = StartCoroutine(Charge());
             }
@@ -52,7 +52,7 @@ public class Swing : MonoBehaviour
                 StopCoroutine(chargeRoutine);
                 chargeRoutine = null;
             }
-            PerformSwing(hitboxes[0].baseVel + addedVelocity);
+            PerformSwing(Mathf.Min(hitboxes[0].baseVel + addedVelocity, hitboxes[0].maxVel));
             addedVelocity = 0;
             isCharging = false;
         }
@@ -66,7 +66,7 @@ public class Swing : MonoBehaviour
     {
         while (true)
         {
-            addedVelocity = chargeRate * Time.deltaTime;
+            addedVelocity += chargeRate * Time.deltaTime;
             yield return null;
         }
     }
