@@ -1546,38 +1546,321 @@ MonoBehaviour:
   option1Text: {fileID: 1146417313}
   option2Text: {fileID: 2003834853}
   dialogueNodes:
-  - npcText: What's up newbie.
+  - npcText: 
+    playerText: 'This wasn''t in the Chief''s debriefing.  '
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 1
+  - npcText: Hey, hey you. Do I know you?
     playerText: 
     isChoiceNode: 1
-    option1Text: This isnt my first time here.
-    option2Text: Is it that obvious.
-    nextNodeForOption1: 1
-    nextNodeForOption2: 2
+    option1Text: Play it cool
+    option2Text: Be rude
+    nextNodeForOption1: 2
+    nextNodeForOption2: 3
     nextNode: 0
-  - npcText: Ok, prove it. Who is the floor boss?
-    playerText: There are floor bosses?
+  - npcText: 
+    playerText: 'Yeah, I play here like every other night. '
     isChoiceNode: 0
     option1Text: 
     option2Text: 
-    nextNodeForOption1: 1
-    nextNodeForOption2: 2
-    nextNode: 3
-  - npcText: Well it's your lucky day.
-    playerText: Why, who are you?
-    isChoiceNode: 0
-    option1Text: 
-    option2Text: 
-    nextNodeForOption1: 1
-    nextNodeForOption2: 2
-    nextNode: 3
-  - npcText: My name is Persephone the floor boss and what's yours newbie?
-    playerText: Lilith the newbie!
-    isChoiceNode: 0
-    option1Text: 
-    option2Text: 
-    nextNodeForOption1: 1
-    nextNodeForOption2: 2
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
     nextNode: 4
+  - npcText: 
+    playerText: Why do you want to know?
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 5
+  - npcText: With that racket you'd be hard to miss.
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 6
+  - npcText: 'The boss is curious. '
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 7
+  - npcText: 
+    playerText: OMG, what type of mascara are you wearing? I love mascara.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 8
+  - npcText: 
+    playerText: The boss is curious in me? How would I go about talking to him.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 9
+  - npcText: You mean my eyeliner.
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 9
+  - npcText: Nice try. Enough playing around who are you.
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 10
+  - npcText: 
+    playerText: I'm not telling some wannabe punk my name, you first.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 11
+  - npcText: 'If you insist. This wannabe punks name is Persephone. '
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 12
+  - npcText: 
+    playerText: 'Yawn, so your nobody important '
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 13
+  - npcText: I don't know if i would count a floor boss unimportant.
+    playerText: 
+    isChoiceNode: 1
+    option1Text: Aplogize
+    option2Text: act like you knew the all along
+    nextNodeForOption1: 14
+    nextNodeForOption2: 15
+    nextNode: 0
+  - npcText: 
+    playerText: 'Sorry, this really is my first time here. '
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 16
+  - npcText: 
+    playerText: I knew who you were all along.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 16
+  - npcText: 
+    playerText: My name is uhh Lilith.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 17
+  - npcText: Your not a cop uhh Lilith.
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 18
+  - npcText: 
+    playerText: Would I make it so obvious?
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 19
+  - npcText: 'Or are you trying to throw me off. '
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 20
+  - npcText: 
+    playerText: I'm just here to play tennis. Cops despise tennis.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 21
+  - npcText: 'That is true. Mmmm, you won''t make it far with that racket. '
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 22
+  - npcText: 
+    playerText: It was good enough for my mom.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 23
+  - npcText: And who is your mom?
+    playerText: 
+    isChoiceNode: 1
+    option1Text: Be vulnerable
+    option2Text: Lie
+    nextNodeForOption1: 24
+    nextNodeForOption2: 25
+    nextNode: 0
+  - npcText: 
+    playerText: She was one of the tennis players apart of the HCC match.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 26
+  - npcText: 
+    playerText: She liked collecting rackets from before tennis was banned.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 27
+  - npcText: I see, well us kids of tennis players must stick together.
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 28
+  - npcText: How weird of her....
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 30
+  - npcText: 
+    playerText: Wait, your parents were tennis players?
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 28
+  - npcText: 'My dad just played a country clubs about business deals. Now he is
+      a deadbeat drunk. '
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 30
+  - npcText: 
+    playerText: Can I ask you something?
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 31
+  - npcText: Go for it.
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 32
+  - npcText: 
+    playerText: Does every floor here have floor bosses like yourself.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 33
+  - npcText: 'Wow you really are a newbie, but yes there are. '
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 34
+  - npcText: 
+    playerText: How do I make it to the big boss.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 35
+  - npcText: Slow your roll, you must beat me first then then the other bosses before
+      you think about him.
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 36
+  - npcText: 
+    playerText: Let's go right now then.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 37
+  - npcText: I like your fire so I'm gonna make you an offer. If you beat me I'll
+      help you find the big boss and if I beat you I get a new lackey. Deal?
+    playerText: 
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 38
+  - npcText: 
+    playerText: Bring it.
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 39
   typingSpeed: 0.03
 --- !u!4 &1860566056
 Transform:
