@@ -48,16 +48,19 @@ public class Ball : MonoBehaviour
 
             if (lastHitter != hitboxScript.user)
             {
-                float sx = hitboxScript.hitArea.localScale.x;
-                float sz = hitboxScript.hitArea.localScale.z;
-                float cx = hitboxScript.hitArea.transform.position.x;
-                float cz = hitboxScript.hitArea.transform.position.x;
-                float xMin = -sx + cx;
-                float xMax = sx + cx;
-                float zMin = -sz + cz;
-                float zMax = sz + cz;
+                if (hitboxScript.dynamicHitbox)
+                {
+                    float sx = hitboxScript.hitArea.localScale.x / 2;
+                    float sz = hitboxScript.hitArea.localScale.z / 2;
+                    float cx = hitboxScript.hitArea.transform.position.x;
+                    float cz = hitboxScript.hitArea.transform.position.z;
+                    float xMin = -sx + cx;
+                    float xMax = sx + cx;
+                    float zMin = -sz + cz;
+                    float zMax = sz + cz;
 
-                hitboxScript.AdjustLaunchAngle(rb, hitbox.transform, xMin, xMax, zMin, zMax);
+                    hitboxScript.AdjustLaunchAngle(rb, hitbox.transform, xMin, xMax, zMin, zMax);
+                }
                 hitboxScript.Launch(rb, hitbox.transform.forward, hitboxScript.launchVel);
                 lastHitter = hitboxScript.user;
                 Debug.Log("Predicted to land at: " + hitboxScript.PredictLandingPoint(rb));

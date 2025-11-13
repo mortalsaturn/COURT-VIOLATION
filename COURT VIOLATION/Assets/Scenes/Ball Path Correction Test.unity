@@ -181,10 +181,14 @@ PrefabInstance:
       objectReference: {fileID: 1804944158}
     - target: {fileID: 7219067653175923234, guid: 9fb35a84383f442518116eed01fb22ba, type: 3}
       propertyPath: launchVel
-      value: 90
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7219067653175923234, guid: 9fb35a84383f442518116eed01fb22ba, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219067653175923234, guid: 9fb35a84383f442518116eed01fb22ba, type: 3}
+      propertyPath: dynamicHitbox
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
+    public bool dynamicHitbox;
+
     public float baseVel,
         launchVel,
         maxVel;
@@ -68,9 +70,9 @@ public class Hitbox : MonoBehaviour
 
             // Adjust pitch (up/down) based on Z distance (forward axis)
             if (landing.z < zMin)
-                hitbox.Rotate(Vector3.right, pitchStep, Space.Self); // tilt up (increase range)
+                hitbox.Rotate(Vector3.right, -pitchStep, Space.Self); // tilt up (increase range)
             else if (landing.z > zMax)
-                hitbox.Rotate(Vector3.right, -pitchStep, Space.Self); // tilt down (reduce range)
+                hitbox.Rotate(Vector3.right, pitchStep, Space.Self); // tilt down (reduce range)
 
             // Adjust yaw (left/right) based on X distance
             if (landing.x < xMin)
