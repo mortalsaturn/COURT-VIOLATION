@@ -76,9 +76,9 @@ public class Hitbox : MonoBehaviour
 
             // Adjust yaw (left/right) based on X distance
             if (landing.x < xMin)
-                hitbox.Rotate(Vector3.up, -yawStep, Space.Self); // rotate left
+                hitbox.Rotate(Vector3.up, yawStep, Space.Self); // rotate left
             else if (landing.x > xMax)
-                hitbox.Rotate(Vector3.up, yawStep, Space.Self); // rotate right
+                hitbox.Rotate(Vector3.up, -yawStep, Space.Self); // rotate right
 
             // Update velocity to match new direction
             Vector3 newDir = hitbox.forward;
