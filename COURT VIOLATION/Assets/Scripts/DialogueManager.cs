@@ -21,6 +21,13 @@ public class DialogueNode
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Text Bubbles")]
+    public GameObject npcBubble;
+    public GameObject playerBubble;
+
+    [Header("Camera Control")]
+    public CameraManager cameraManager;
+
     [Header("UI References")]
     public TMP_Text npcTextBox;
     public TMP_Text playerTextBox;
@@ -39,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     private bool playerFinished = false;
 
     private Coroutine typingRoutine;
+    private bool dialogueActive = false;
 
     void Start()
     {
@@ -46,7 +54,7 @@ public class DialogueManager : MonoBehaviour
         option2Button.onClick.AddListener(() => ChooseOption(2));
 
         HideChoices();
-        DisplayNode();
+
     }
 
     void Update()
@@ -76,39 +84,75 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeDialogue(DialogueNode node)
     {
-        // --- NPC dialogue ---
         isTyping = true;
-        npcFinished = false;
 
-        foreach (char c in node.npcText)
+        // Hide both bubbles at the start
+        if (npcBubble != null) npcBubble.SetActive(false);
+        if (playerBubble != null) playerBubble.SetActive(false);
+
+        // ----- NPC SPEAKING -----
+        if (!string.IsNullOrEmpty(node.npcText))
         {
-            npcTextBox.text += c;
-            yield return new WaitForSeconds(typingSpeed);
+            // Switch to NPC camera
+            if (cameraManager != null)
+                cameraManager.SetCamera(CameraManager.CamState.NPC);
+
+            if (npcBubble != null) npcBubble.SetActive(true);
+            if (playerBubble != null) playerBubble.SetActive(false);
+
+            npcTextBox.text = "";
+            npcFinished = false;
+
+            foreach (char c in node.npcText)
+            {
+                npcTextBox.text += c;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+            npcFinished = true;
+            yield return new WaitForSeconds(0.25f);
         }
 
-        npcFinished = true;
-        yield return new WaitForSeconds(0.3f); // pause before player text
-
-        // --- Player dialogue ---
+        // ----- PLAYER SPEAKING -----
         if (!string.IsNullOrEmpty(node.playerText))
         {
+            // Switch to PLAYER camera
+            if (cameraManager != null)
+                cameraManager.SetCamera(CameraManager.CamState.PLAYER);
+
+            if (npcBubble != null) npcBubble.SetActive(false);
+            if (playerBubble != null) playerBubble.SetActive(true);
+
+            playerTextBox.text = "";
             playerFinished = false;
+
             foreach (char c in node.playerText)
             {
                 playerTextBox.text += c;
                 yield return new WaitForSeconds(typingSpeed);
             }
+
             playerFinished = true;
         }
 
+        // Done typing
         isTyping = false;
 
-        // If this node has choices, show them after typing finishes
+        // ----- CHOICES -----
         if (node.isChoiceNode)
         {
+            // Switch to SCENE camera
+            if (cameraManager != null)
+                cameraManager.SetCamera(CameraManager.CamState.SCENE);
+
+            if (npcBubble != null) npcBubble.SetActive(false);
+            if (playerBubble != null) playerBubble.SetActive(false);
+
             ShowChoices(node);
         }
     }
+
+
 
     void GoToNextNode()
     {
@@ -127,8 +171,27 @@ public class DialogueManager : MonoBehaviour
             npcTextBox.text = "";
             playerTextBox.text = "";
             Debug.Log("Dialogue ended.");
+
+            StartCoroutine(EndDialogue());
+
         }
     }
+    IEnumerator EndDialogue()
+    {
+        dialogueActive = false;
+
+        // Switch back to Main Camera
+        if (cameraManager != null)
+            cameraManager.SetCamera(CameraManager.CamState.SCENE);
+
+        // Re-enable movement
+        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        PlayerMovement controller = player.GetComponent<PlayerMovement>();
+        if (controller != null) controller.enabled = true;
+
+        yield return null;
+    }
+
 
     void ShowChoices(DialogueNode node)
     {
@@ -157,4 +220,21 @@ public class DialogueManager : MonoBehaviour
 
         DisplayNode();
     }
+    public void StartDialogue()
+    {
+        // Optional: reset dialogue
+        currentNodeIndex = 0;
+
+        // Clear UI
+        npcTextBox.text = "";
+        playerTextBox.text = "";
+
+        // Start first node
+        DisplayNode();
+
+        // Switch to appropriate camera
+        if (cameraManager != null)
+            cameraManager.SetCamera(CameraManager.CamState.SCENE);
+    }
+
 }
