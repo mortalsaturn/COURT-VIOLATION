@@ -157,7 +157,7 @@ Animator:
   m_GameObject: {fileID: 7309721668183771872}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b8f8e623920c398488dea2c2e69db22e, type: 2}
+  m_Controller: {fileID: 9100000, guid: ea39aba768d0c4985baa114f3131e939, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -258,6 +258,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c7134705-d1ed-4d64-94e1-e2d554b01195
     m_ActionName: 'Gameplay/Swing[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c10252f-42cc-4898-b748-ce05ced2ea61
+    m_ActionName: 'Gameplay/Lob[/Keyboard/z]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Gameplay
@@ -275,7 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ba328bec22bd54389739f3428c1a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  animator: {fileID: 0}
+  chargeRate: 0
+  addedVelocity: 0
 --- !u!114 &1023068128096016216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +297,6 @@ MonoBehaviour:
   sprintModifier: 1.5
   quickStepDistance: 3
   quickStepDuration: 0.15
-  ball: {fileID: 0}
 --- !u!1001 &3230148198485439160
 PrefabInstance:
   m_ObjectHideFlags: 0
