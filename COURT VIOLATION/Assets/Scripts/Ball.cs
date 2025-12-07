@@ -1,4 +1,9 @@
+using System.Data.SqlTypes;
+using Unity.VisualScripting;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [RequireComponent(typeof(Rigidbody))]
 public class Ball : MonoBehaviour
@@ -6,6 +11,7 @@ public class Ball : MonoBehaviour
     Rigidbody rb;
     public string lastHitter;
     public Vector3 destination;
+    public bool pauseOnCollision;
 
     void Start()
     {
@@ -15,6 +21,7 @@ public class Ball : MonoBehaviour
     void Update()
     {
         FindDirection();
+        DrawTrajectory(rb);
     }
 
     public void FindDirection()
@@ -41,8 +48,22 @@ public class Ball : MonoBehaviour
 
             if (lastHitter != hitboxScript.user)
             {
+                if (hitboxScript.dynamicHitbox)
+                {
+                    float sx = hitboxScript.hitArea.localScale.x / 2;
+                    float sz = hitboxScript.hitArea.localScale.z / 2;
+                    float cx = hitboxScript.hitArea.transform.position.x;
+                    float cz = hitboxScript.hitArea.transform.position.z;
+                    float xMin = -sx + cx;
+                    float xMax = sx + cx;
+                    float zMin = -sz + cz;
+                    float zMax = sz + cz;
+
+                    hitboxScript.AdjustLaunchAngle(rb, hitbox.transform, xMin, xMax, zMin, zMax);
+                }
                 hitboxScript.Launch(rb, hitbox.transform.forward, hitboxScript.launchVel);
                 lastHitter = hitboxScript.user;
+                Debug.Log("Predicted to land at: " + hitboxScript.PredictLandingPoint(rb));
             }
         }
     }
@@ -50,5 +71,31 @@ public class Ball : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         lastHitter = collision.gameObject.name;
+        Debug.Log("Landed at: " + transform.position);
+        if (pauseOnCollision)
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPaused = true;
+#endif
+        }
+    }
+
+    void DrawTrajectory(Rigidbody rb, int steps = 30, float stepTime = 0.1f)
+    {
+        Vector3 pos = rb.position;
+        Vector3 vel = rb.linearVelocity;
+        Vector3 g = Physics.gravity;
+
+        for (int i = 0; i < steps; i++)
+        {
+            Vector3 newPos = pos + vel * stepTime + 0.5f * g * stepTime * stepTime;
+            Debug.DrawLine(pos, newPos, Color.yellow);
+
+            vel += g * stepTime;
+            pos = newPos;
+
+            if (pos.y <= 0f)
+                break;
+        }
     }
 }
