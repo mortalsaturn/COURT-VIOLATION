@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Get movement input
+        
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move the player
+        
         rb.MovePosition(rb.position + input * moveSpeed * Time.fixedDeltaTime);
     }
 }
