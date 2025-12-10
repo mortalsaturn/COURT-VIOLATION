@@ -1,14 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System.Collections.Generic;
-
 
 public class SceneLoader : MonoBehaviour
-
 {
-    public Animator transtion;
+
+    public Animator transition;
     public float transitionTime = 1f;
+
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
@@ -28,26 +27,37 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Match Scene");
     }
+
     public void DialogueScene1()
     {
         SceneManager.LoadScene("Prologue");
     }
+
     public void DialogueScene2()
     {
         SceneManager.LoadScene("Debrief");
     }
+
     public void DialogueScene3()
     {
         SceneManager.LoadScene("Scene 1");
     }
-    public void LoadNextScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+
     IEnumerator LoadLevel(int levelIndex)
     {
-        transtion.SetTrigger("Start");
+        transition.SetTrigger("End");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+
+        SceneManager.LoadSceneAsync(levelIndex);
+
+        transition.SetTrigger("Start");
     }
+    public IEnumerator LoadSceneWithTransition(string sceneName)
+    {
+        transition.SetTrigger("End");
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(sceneName);
+    }
+
 }
