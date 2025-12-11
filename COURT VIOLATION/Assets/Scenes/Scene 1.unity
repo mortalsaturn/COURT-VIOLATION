@@ -7096,7 +7096,7 @@ MonoBehaviour:
     nextNodeForOption1: 0
     nextNodeForOption2: 0
     nextNode: 39
-  typingSpeed: 0.03
+  typingSpeed: 0.08
 --- !u!4 &1860566056
 Transform:
   m_ObjectHideFlags: 0
