@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 8533518787924148450}
   - component: {fileID: 629932603011996904}
   - component: {fileID: 8481663142770304436}
-  - component: {fileID: 8994414910745004941}
+  - component: {fileID: 9151140823993732735}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -280,7 +280,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8994414910745004941
+--- !u!114 &9151140823993732735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,11 +289,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7309721668183771872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f66c68d02b8ea34aa5f9e309467a856, type: 3}
+  m_Script: {fileID: 11500000, guid: ad27b6b0b2478f94991149f8796f8708, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  ballTransform: {fileID: 0}
-  ballScript: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyAI
 --- !u!1 &8706055485872029657
 GameObject:
   m_ObjectHideFlags: 0

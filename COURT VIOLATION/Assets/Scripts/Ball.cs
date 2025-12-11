@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
 {
     Rigidbody rb;
     public string lastHitter;
+    public Vector3 predictedPoint;
     public Vector3 destination;
     public bool pauseOnCollision;
     public LayerMask destinationMask;
@@ -37,18 +38,17 @@ public class Ball : MonoBehaviour
 
     public void FindDirection()
     {
-        Vector3 flatVel = new(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-        Vector3 direction = flatVel.normalized;
+        Vector3 velocity = rb.linearVelocity;
+        Vector3 direction = velocity.normalized;
 
-        Vector3 bodyLevel = new(transform.position.x, 1, transform.position.z);
-        Ray trajectoryRay = new(bodyLevel, direction);
+        Ray trajectoryRay = new(transform.position, direction);
         RaycastHit hit;
 
         if (
             Physics.Raycast(
                 trajectoryRay,
                 out hit,
-                Mathf.Infinity,
+                10f,
                 destinationMask,
                 QueryTriggerInteraction.Collide
             )
@@ -65,7 +65,6 @@ public class Ball : MonoBehaviour
             // No collision found
             isApproachingEnemy = false;
         }
-        Debug.DrawRay(bodyLevel, direction * 100);
     }
 
     void OnTriggerEnter(Collider trigger)
@@ -96,7 +95,8 @@ public class Ball : MonoBehaviour
                 }
                 hitboxScript.Launch(rb, hitbox.transform.forward, hitboxScript.launchVel);
                 lastHitter = hitboxScript.user;
-                Debug.Log("Predicted to land at: " + hitboxScript.PredictLandingPoint(rb));
+                predictedPoint = hitboxScript.PredictLandingPoint(rb);
+                Debug.Log("Predicted to land at: " + predictedPoint);
             }
         }
     }
