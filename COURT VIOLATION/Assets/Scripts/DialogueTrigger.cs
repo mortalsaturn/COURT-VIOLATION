@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueManager dialogueManager;
+   public DialogueManager dialogueManager;
     public GameObject promptUI;
     public float triggerDistance = 2.5f;
 
     private Transform player;
+    private bool isInDialogue = false;
 
     void Start()
     {
@@ -16,6 +17,13 @@ public class DialogueTrigger : MonoBehaviour
 
     void Update()
     {
+        if (isInDialogue) 
+        {
+            // Make SURE the prompt stays hidden
+            promptUI.SetActive(false);
+            return;
+        }
+
         float dist = Vector3.Distance(player.position, transform.position);
 
         if (dist <= triggerDistance)
@@ -24,6 +32,7 @@ public class DialogueTrigger : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.T))
             {
+                isInDialogue = true;    // 🔒 Prevent prompt from reappearing
                 StartDialogue();
             }
         }
@@ -35,7 +44,6 @@ public class DialogueTrigger : MonoBehaviour
 
     void StartDialogue()
     {
-        // Turn off prompt
         promptUI.SetActive(false);
 
         // Lock player movement
@@ -43,11 +51,17 @@ public class DialogueTrigger : MonoBehaviour
         if (controller != null)
             controller.enabled = false;
 
-        // SWITCH CAMERA IMMEDIATELY 
+        // Switch camera
         if (dialogueManager != null && dialogueManager.cameraManager != null)
             dialogueManager.cameraManager.SetCamera(CameraManager.CamState.PLAYER);
 
-        // Start the dialogue system
+        // Start the dialogue
         dialogueManager.StartDialogue();
+    }
+
+    // Call this from DialogueManager when dialogue ends
+    public void EndDialogue()
+    {
+        isInDialogue = false;
     }
 }
