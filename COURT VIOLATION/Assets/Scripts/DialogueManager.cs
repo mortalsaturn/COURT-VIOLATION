@@ -21,6 +21,10 @@ public class DialogueNode
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Scene Transition")]
+    public SceneLoader sceneLoader;
+    public string nextSceneName;   // Set this in Inspector
+
     [Header("Text Bubbles")]
     public GameObject npcBubble;
     public GameObject playerBubble;
@@ -70,6 +74,13 @@ public class DialogueManager : MonoBehaviour
 
     void DisplayNode()
     {
+
+        if (currentNodeIndex < 0 || currentNodeIndex >= dialogueNodes.Length)
+        {
+            Debug.LogError("Invalid dialogue index: " + currentNodeIndex);
+            StartCoroutine(EndDialogue());
+            return;
+        }
         DialogueNode node = dialogueNodes[currentNodeIndex];
 
         npcTextBox.text = "";
@@ -78,8 +89,9 @@ public class DialogueManager : MonoBehaviour
         HideChoices();
         StopAllCoroutines();
 
-        // Start the NPC typewriter first
+    
         typingRoutine = StartCoroutine(TypeDialogue(node));
+        
     }
 
     IEnumerator TypeDialogue(DialogueNode node)
@@ -180,7 +192,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueActive = false;
 
-        // Switch back to Main Camera
+        // Switch camera back
         if (cameraManager != null)
             cameraManager.SetCamera(CameraManager.CamState.SCENE);
 
@@ -189,8 +201,13 @@ public class DialogueManager : MonoBehaviour
         PlayerMovement controller = player.GetComponent<PlayerMovement>();
         if (controller != null) controller.enabled = true;
 
-        yield return null;
+        // ---- New: Trigger Scene Transition ----
+        if (sceneLoader != null && !string.IsNullOrEmpty(nextSceneName))
+        {
+            yield return sceneLoader.LoadSceneWithTransition(nextSceneName);
+        }
     }
+
 
 
     void ShowChoices(DialogueNode node)

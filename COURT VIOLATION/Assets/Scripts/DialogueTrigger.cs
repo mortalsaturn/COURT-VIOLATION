@@ -3,11 +3,10 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     public DialogueManager dialogueManager;
-    public GameObject promptUI; // �Press T to talk�
+    public GameObject promptUI;
     public float triggerDistance = 2.5f;
 
     private Transform player;
-    private bool playerInRange = false;
 
     void Start()
     {
@@ -21,7 +20,6 @@ public class DialogueTrigger : MonoBehaviour
 
         if (dist <= triggerDistance)
         {
-            playerInRange = true;
             promptUI.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.T))
@@ -31,13 +29,13 @@ public class DialogueTrigger : MonoBehaviour
         }
         else
         {
-            playerInRange = false;
             promptUI.SetActive(false);
         }
     }
 
     void StartDialogue()
     {
+        // Turn off prompt
         promptUI.SetActive(false);
 
         // Lock player movement
@@ -45,7 +43,11 @@ public class DialogueTrigger : MonoBehaviour
         if (controller != null)
             controller.enabled = false;
 
-        // Activate dialogue system
+        // SWITCH CAMERA IMMEDIATELY 
+        if (dialogueManager != null && dialogueManager.cameraManager != null)
+            dialogueManager.cameraManager.SetCamera(CameraManager.CamState.PLAYER);
+
+        // Start the dialogue system
         dialogueManager.StartDialogue();
     }
 }
