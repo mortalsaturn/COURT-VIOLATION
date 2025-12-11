@@ -1,22 +1,55 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using Mono.Cecil.Cil;
 using NUnit.Framework.Internal;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Ball ball;
     private Node root;
+    private Node swingSequence;
+    private Node chargeSequence;
+    private Node chaseSequence;
+    private Node recoverStalkSequence;
+    private Node defaultStalkSequence;
+
+    [Header("Ball")]
+    public Transform ballTransform;
+    public Ball ballScript;
+
+    [Header("Hitboxes")]
+    Hitbox[] hitboxes;
+
+    [Header("Charge")]
+    float addedVelocity;
+    float chargeRate;
+    public Coroutine chargeRoutine;
+    Animator animator;
+    public Transform baseline;
+
+    [Header("Movement")]
+    public float baseSpeed;
+    public float sprintModifier;
+    private bool _hasStartedSwing;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+        hitboxes = GetComponentsInChildren<Hitbox>();
         root = BuildTree();
     }
 
     void Update()
     {
-        root.Evaluate();
+        // TEMPORARY: debug each subtree evaluation to see what dies where
+        Debug.Log("SwingSequence: " + swingSequence.Evaluate());
+        Debug.Log("ChargeSequence: " + chargeSequence.Evaluate());
+        Debug.Log("ChaseSequence: " + chaseSequence.Evaluate());
+        Debug.Log("RecoverStalk: " + recoverStalkSequence.Evaluate());
+        Debug.Log("DefaultStalk: " + defaultStalkSequence.Evaluate());
     }
 
     private Node BuildTree()
@@ -29,19 +62,19 @@ public class EnemyAI : MonoBehaviour
         Node stalk = new StalkNode(this);
 
         // Decorated Actions
-        Node swingSequence = new BallInZoneDecorator(
-            new BallInHitRangeDecorator(new Sequence(new List<Node> { swing }), this),
+        swingSequence = new BallInZoneDecorator(new BallInHitRangeDecorator(swing, this), this);
+
+        chargeSequence = new BallInZoneDecorator(
+            new BallApproachingEnemyDecorator(
+                new WhileDecorator(() => !ballScript.inEnemyHitRange, charge),
+                this
+            ),
             this
         );
 
-        Node chargeSequence = new BallInZoneDecorator(
-            new PathTowardEnemyDecorator(new Sequence(new List<Node> { charge }), this),
-            this
-        );
-
-        Node chaseSequence = new BallInZoneDecorator(
+        chaseSequence = new BallInZoneDecorator(
             new Inverter(
-                new PathTowardEnemyDecorator(
+                new BallApproachingEnemyDecorator(
                     new Selector(
                         new List<Node>
                         {
@@ -55,9 +88,9 @@ public class EnemyAI : MonoBehaviour
             this
         );
 
-        Node recoverStalkSequence = new EnemyHitBallDecorator(stalk, this);
+        recoverStalkSequence = new EnemyHitBallDecorator(stalk, this);
 
-        Node defaultStalkSequence = stalk;
+        defaultStalkSequence = stalk;
 
         // Root Selector
         return new Selector(
@@ -74,51 +107,156 @@ public class EnemyAI : MonoBehaviour
 
     public bool IsBallInZone()
     {
-        throw new NotImplementedException();
+        return ballScript.inEnemyZone;
     }
 
     public bool IsBallInHitRange()
     {
-        throw new NotImplementedException();
+        return ballScript.inEnemyHitRange;
     }
 
-    public NodeState Swing()
+    public NodeState OnSwing()
     {
-        throw new NotImplementedException();
+        float vel = Mathf.Min(hitboxes[0].baseVel + addedVelocity, hitboxes[0].maxVel);
+        NodeState result = Swing(vel);
+
+        // If swing finished, clear charge state
+        if (result == NodeState.Success)
+        {
+            if (chargeRoutine != null)
+            {
+                StopCoroutine(chargeRoutine);
+                chargeRoutine = null;
+            }
+
+            addedVelocity = 0;
+        }
+
+        return result;
     }
 
-    public bool IsBallPathTowardEnemy()
+    public NodeState Swing(float velocity)
     {
-        throw new NotImplementedException();
+        foreach (var hb in hitboxes)
+            hb.launchVel = velocity;
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        bool inLeft = stateInfo.IsName("LeftBasicSwing");
+        bool inRight = stateInfo.IsName("RightBasicSwing");
+
+        // If we haven't started the swing yet, trigger it once
+        if (!_hasStartedSwing)
+        {
+            _hasStartedSwing = true;
+            animator.SetBool("isBallRight", ballScript.destination.x >= transform.position.x);
+            animator.SetTrigger("Swing");
+            return NodeState.Running;
+        }
+
+        // If we're in the swing state, wait for it to finish
+        if (inLeft || inRight)
+        {
+            if (stateInfo.normalizedTime < 1f)
+                return NodeState.Running;
+
+            // finished
+            _hasStartedSwing = false;
+            return NodeState.Success;
+        }
+
+        // If we're not in the swing states yet (still transitioning), keep waiting
+        return NodeState.Running;
     }
 
-    public NodeState Charge()
+    public bool IsBallApproachingEnemy()
     {
-        throw new NotImplementedException();
+        return ballScript.isApproachingEnemy;
+    }
+
+    public NodeState OnCharge()
+    {
+        if (chargeRoutine == null)
+        {
+            chargeRoutine = StartCoroutine(Charge());
+        }
+
+        return NodeState.Running;
+    }
+
+    private IEnumerator Charge()
+    {
+        while (true)
+        {
+            addedVelocity += chargeRate * Time.deltaTime;
+            yield return null;
+        }
     }
 
     public bool IsBallInWalkDistance()
     {
-        throw new NotImplementedException();
+        return ballScript.inEnemyWalkRange;
     }
 
     public NodeState WalkToTarget()
     {
-        throw new NotImplementedException();
+        if (!ballScript.inEnemyHitRange)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                ballTransform.position,
+                baseSpeed * Time.deltaTime
+            );
+            return NodeState.Running;
+        }
+        else
+        {
+            return NodeState.Success;
+        }
     }
 
     public NodeState SprintToTarget()
     {
-        throw new NotImplementedException();
+        if (!ballScript.inEnemyHitRange)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                ballTransform.position,
+                baseSpeed * sprintModifier * Time.deltaTime
+            );
+            return NodeState.Running;
+        }
+        else
+        {
+            return NodeState.Success;
+        }
     }
 
     public bool HasHitBall()
     {
-        throw new NotImplementedException();
+        return ballScript.lastHitter == gameObject.name;
     }
 
     public NodeState Stalk()
     {
-        throw new NotImplementedException();
+        Vector3 currentPos = transform.position;
+        float targetX = ballTransform.position.x;
+        float targetZ = baseline.position.z;
+
+        Vector3 targetPos = new Vector3(targetX, currentPos.y, targetZ);
+
+        if (Vector3.Distance(currentPos, targetPos) > 2f)
+        {
+            transform.position = Vector3.MoveTowards(
+                currentPos,
+                targetPos,
+                baseSpeed * Time.deltaTime
+            );
+            return NodeState.Running;
+        }
+        else
+        {
+            return NodeState.Success;
+        }
     }
 }

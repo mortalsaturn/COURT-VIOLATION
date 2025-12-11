@@ -14,9 +14,9 @@ TagManager:
   - Water
   - UI
   - Hitbox
-  - 
-  - 
-  - 
+  - EnemyZone
+  - EnemyHitRange
+  - EnemyWalkRange
   - 
   - 
   - 

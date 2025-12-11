@@ -43,15 +43,17 @@ public class SwingNode : Node
 
     public override NodeState Evaluate()
     {
-        return ai.Swing();
+        Debug.Log("Ran " + ToString());
+
+        return ai.OnSwing();
     }
 }
 
-public class PathTowardEnemyDecorator : ConditionDecorator
+public class BallApproachingEnemyDecorator : ConditionDecorator
 {
     private EnemyAI ai;
 
-    public PathTowardEnemyDecorator(Node child, EnemyAI ai)
+    public BallApproachingEnemyDecorator(Node child, EnemyAI ai)
         : base(child)
     {
         this.ai = ai;
@@ -59,7 +61,7 @@ public class PathTowardEnemyDecorator : ConditionDecorator
 
     protected override bool Condition()
     {
-        return ai.IsBallPathTowardEnemy();
+        return ai.IsBallApproachingEnemy();
     }
 }
 
@@ -74,7 +76,9 @@ public class ChargeNode : Node
 
     public override NodeState Evaluate()
     {
-        return ai.Charge();
+        Debug.Log("Ran " + ToString());
+
+        return ai.OnCharge();
     }
 }
 
@@ -105,6 +109,8 @@ public class WalkNode : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Ran " + ToString());
+
         return ai.WalkToTarget();
     }
 }
@@ -120,6 +126,8 @@ public class SprintNode : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Ran " + ToString());
+
         return ai.SprintToTarget();
     }
 }
@@ -151,6 +159,8 @@ public class StalkNode : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Ran " + ToString());
+
         return ai.Stalk();
     }
 }

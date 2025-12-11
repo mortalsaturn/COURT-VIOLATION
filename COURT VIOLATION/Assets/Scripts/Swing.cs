@@ -108,7 +108,7 @@ public class Swing : MonoBehaviour
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        if (!stateInfo.IsName("LeftBasicSwing") || !stateInfo.IsName("RightBasicSwing"))
+        if (!stateInfo.IsName("LeftBasicSwing") && !stateInfo.IsName("RightBasicSwing"))
         {
             animator.SetTrigger("Swing");
             animator.SetBool("isBallRight", ballInfo.destination.x >= transform.position.x);

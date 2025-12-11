@@ -189,29 +189,21 @@ public class WhileDecorator : Node
 
     public override NodeState Evaluate()
     {
-        // If the condition becomes false, stop immediately.
-        if (_condition.Invoke() == false)
+        if (!_condition())
         {
+            // Condition false, loop ended normally
+            return NodeState.Success;
+        }
+
+        var result = _child.Evaluate();
+
+        if (result == NodeState.Failure)
+        {
+            // Child failure, loop aborted
             return NodeState.Failure;
         }
 
-        // Evaluate the child normally.
-        var result = _child.Evaluate();
-
-        // If the child succeeded, we consider this "still running"
-        // because the loop continues as long as the condition is true.
-        if (result == NodeState.Success)
-        {
-            return NodeState.Running;
-        }
-
-        // If the child is still working, pass that up.
-        if (result == NodeState.Running)
-        {
-            return NodeState.Running;
-        }
-
-        // If the child fails, the loop stops entirely.
-        return NodeState.Failure;
+        // Child is running or succeeded, continue looping
+        return NodeState.Running;
     }
 }

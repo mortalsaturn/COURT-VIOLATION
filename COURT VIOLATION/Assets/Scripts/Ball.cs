@@ -12,6 +12,13 @@ public class Ball : MonoBehaviour
     public string lastHitter;
     public Vector3 destination;
     public bool pauseOnCollision;
+    public LayerMask destinationMask;
+
+    [Header("Enemy")]
+    public bool inEnemyZone;
+    public bool inEnemyHitRange;
+    public bool inEnemyWalkRange;
+    public bool isApproachingEnemy;
 
     void Start()
     {
@@ -22,25 +29,51 @@ public class Ball : MonoBehaviour
     {
         FindDirection();
         DrawTrajectory(rb);
+        if (inEnemyZone)
+        {
+            Debug.Log("In enemy zone");
+        }
     }
 
     public void FindDirection()
     {
-        Vector3 velocity = rb.linearVelocity;
+        Vector3 flatVel = new(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        Vector3 direction = flatVel.normalized;
 
-        Vector3 direction = velocity.normalized;
-
-        Ray trajectoryRay = new(transform.position, direction);
+        Vector3 bodyLevel = new(transform.position.x, 1, transform.position.z);
+        Ray trajectoryRay = new(bodyLevel, direction);
         RaycastHit hit;
 
-        if (Physics.Raycast(trajectoryRay, out hit))
+        if (
+            Physics.Raycast(
+                trajectoryRay,
+                out hit,
+                Mathf.Infinity,
+                destinationMask,
+                QueryTriggerInteraction.Collide
+            )
+        )
         {
             destination = hit.point;
+
+            // Check if the hit is the enemy's hit range
+            isApproachingEnemy =
+                hit.collider.gameObject.layer == LayerMask.NameToLayer("EnemyHitRange");
         }
+        else
+        {
+            // No collision found
+            isApproachingEnemy = false;
+        }
+        Debug.DrawRay(bodyLevel, direction * 100);
     }
 
     void OnTriggerEnter(Collider trigger)
     {
+        inEnemyZone = trigger.gameObject.layer == LayerMask.NameToLayer("EnemyZone");
+        inEnemyHitRange = trigger.gameObject.layer == LayerMask.NameToLayer("EnemyHitRange");
+        inEnemyWalkRange = trigger.gameObject.layer == LayerMask.NameToLayer("EnemyWalkRange");
+
         if (trigger.gameObject.layer == LayerMask.NameToLayer("Hitbox"))
         {
             GameObject hitbox = trigger.gameObject;
@@ -65,6 +98,22 @@ public class Ball : MonoBehaviour
                 lastHitter = hitboxScript.user;
                 Debug.Log("Predicted to land at: " + hitboxScript.PredictLandingPoint(rb));
             }
+        }
+    }
+
+    void OnTriggerExit(Collider trigger)
+    {
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("EnemyZone"))
+        {
+            inEnemyZone = false;
+        }
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("EnemyHitRange"))
+        {
+            inEnemyHitRange = false;
+        }
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("EnemyWalkRange"))
+        {
+            inEnemyWalkRange = false;
         }
     }
 
