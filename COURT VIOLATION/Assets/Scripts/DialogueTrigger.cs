@@ -3,7 +3,7 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     public DialogueManager dialogueManager;
-    public GameObject promptUI;   // “Press T to talk”
+    public GameObject promptUI; // ï¿½Press T to talkï¿½
     public float triggerDistance = 2.5f;
 
     private Transform player;
@@ -42,7 +42,8 @@ public class DialogueTrigger : MonoBehaviour
 
         // Lock player movement
         PlayerMovement controller = player.GetComponent<PlayerMovement>();
-        if (controller != null) controller.enabled = false;
+        if (controller != null)
+            controller.enabled = false;
 
         // Activate dialogue system
         dialogueManager.StartDialogue();
