@@ -3,7 +3,8 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public Transform player;
-    public float followDistance = 10f;
+    public float followDistance = 10f;   // how far away the NPC starts chasing
+    public float stopDistance = 2f;      // how close the NPC stops
     public float moveSpeed = 3f;
 
     private Rigidbody rb;
@@ -19,14 +20,20 @@ public class FollowPlayer : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (distance <= followDistance)
+        // Only follow if:
+        // 1. Player is within follow distance
+        // 2. NPC is NOT too close (greater than stopDistance)
+        if (distance <= followDistance && distance > stopDistance)
         {
             Vector3 direction = (player.position - transform.position).normalized;
-
-            // keep movement on XZ plane
-            direction.y = 0;
+            direction.y = 0; // keep NPC grounded
 
             rb.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            // Stop movement completely
+            rb.linearVelocity = Vector3.zero;
         }
     }
 }
