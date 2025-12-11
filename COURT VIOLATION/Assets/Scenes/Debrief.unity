@@ -2060,7 +2060,7 @@ Transform:
   m_GameObject: {fileID: 492150415}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.67, y: 2.21, z: -6.06}
+  m_LocalPosition: {x: -1.67, y: 2.074, z: -6.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5244,7 +5244,7 @@ MonoBehaviour:
     nextNodeForOption1: 0
     nextNodeForOption2: 0
     nextNode: 7
-  - npcText: Go ahead Lilith. Get to work.
+  - npcText: Go ahead Lilith. Head there immediately.
     playerText: 
     isChoiceNode: 0
     option1Text: 
