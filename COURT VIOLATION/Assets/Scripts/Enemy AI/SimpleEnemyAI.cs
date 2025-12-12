@@ -22,13 +22,21 @@ public class SimpleEnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, ballTransform.position) <= swingDistance)
+        var ballDist = Vector3.Distance(transform.position, ballTransform.position);
+
+        if (ballDist <= swingDistance)
         {
+            Debug.Log("Distance from ball: " + ballDist);
+            Debug.Log("Swinging");
+
             Swing(hitboxes[0].baseVel);
         }
-        else if (ballScript.inEnemyZone)
+        else
         {
-            Move();
+            if (ballScript.lastHitter == "Player")
+            {
+                Move();
+            }
         }
     }
 
@@ -36,7 +44,11 @@ public class SimpleEnemyAI : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(
             transform.position,
-            ballScript.predictedPoint,
+            new(
+                ballScript.predictedPoint.x - 1.2f,
+                transform.position.y,
+                ballScript.predictedPoint.z + 5f
+            ),
             baseSpeed * Time.deltaTime
         );
     }

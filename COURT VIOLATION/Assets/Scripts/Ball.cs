@@ -30,10 +30,6 @@ public class Ball : MonoBehaviour
     {
         FindDirection();
         DrawTrajectory(rb);
-        if (inEnemyZone)
-        {
-            Debug.Log("In enemy zone");
-        }
     }
 
     public void FindDirection()
@@ -69,10 +65,6 @@ public class Ball : MonoBehaviour
 
     void OnTriggerEnter(Collider trigger)
     {
-        inEnemyZone = trigger.gameObject.layer == LayerMask.NameToLayer("EnemyZone");
-        inEnemyHitRange = trigger.gameObject.layer == LayerMask.NameToLayer("EnemyHitRange");
-        inEnemyWalkRange = trigger.gameObject.layer == LayerMask.NameToLayer("EnemyWalkRange");
-
         if (trigger.gameObject.layer == LayerMask.NameToLayer("Hitbox"))
         {
             GameObject hitbox = trigger.gameObject;
@@ -101,26 +93,21 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider trigger)
+    {
+        inEnemyZone = trigger.gameObject.layer == LayerMask.NameToLayer("EnemyZone");
+    }
+
     void OnTriggerExit(Collider trigger)
     {
         if (trigger.gameObject.layer == LayerMask.NameToLayer("EnemyZone"))
         {
             inEnemyZone = false;
         }
-        if (trigger.gameObject.layer == LayerMask.NameToLayer("EnemyHitRange"))
-        {
-            inEnemyHitRange = false;
-        }
-        if (trigger.gameObject.layer == LayerMask.NameToLayer("EnemyWalkRange"))
-        {
-            inEnemyWalkRange = false;
-        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        lastHitter = collision.gameObject.name;
-        Debug.Log("Landed at: " + transform.position);
         if (pauseOnCollision)
         {
 #if UNITY_EDITOR
