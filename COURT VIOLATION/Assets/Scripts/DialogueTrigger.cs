@@ -19,7 +19,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (isInDialogue) 
         {
-            // Make SURE the prompt stays hidden
+            
             promptUI.SetActive(false);
             return;
         }
@@ -32,7 +32,7 @@ public class DialogueTrigger : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.T))
             {
-                isInDialogue = true;    // 🔒 Prevent prompt from reappearing
+                isInDialogue = true;    
                 StartDialogue();
             }
         }
@@ -59,7 +59,7 @@ public class DialogueTrigger : MonoBehaviour
         dialogueManager.StartDialogue();
     }
 
-    // Call this from DialogueManager when dialogue ends
+   
     public void EndDialogue()
     {
         isInDialogue = false;
