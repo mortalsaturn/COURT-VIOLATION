@@ -6,9 +6,11 @@ using System.Collections;
 public class SimpleDialogueLine
 {
     public string speakerName;
+
     [TextArea(2, 5)]
     public string dialogueText;
 }
+
 public class SimpleDialogueManager : MonoBehaviour
 {
     [Header("UI References")]
@@ -18,6 +20,10 @@ public class SimpleDialogueManager : MonoBehaviour
     [Header("Dialogue Data")]
     public SimpleDialogueLine[] lines;
     public float typingSpeed = 0.03f;
+
+    [Header("Scene Transition")]
+    public SceneLoader sceneLoader;
+    public string nextSceneName;
 
     private int currentLineIndex = 0;
     private bool isTyping = false;
@@ -40,7 +46,7 @@ public class SimpleDialogueManager : MonoBehaviour
     {
         if (currentLineIndex >= lines.Length)
         {
-            EndDialogue();
+            StartCoroutine(EndDialogue());
             return;
         }
 
@@ -74,12 +80,19 @@ public class SimpleDialogueManager : MonoBehaviour
         DisplayLine();
     }
 
-    void EndDialogue()
+    IEnumerator EndDialogue()
     {
         dialogueText.text = "";
         speakerNameText.text = "";
         Debug.Log("Dialogue finished.");
-        // Optionally disable UI panel here
+
+        // Optional: disable dialogue UI
         // gameObject.SetActive(false);
+
+        // ---- Scene Transition ----
+        if (sceneLoader != null && !string.IsNullOrEmpty(nextSceneName))
+        {
+            yield return sceneLoader.LoadSceneWithTransition(nextSceneName);
+        }
     }
 }

@@ -1,11 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using Mono.Cecil.Cil;
-using NUnit.Framework.Internal;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemyAI : MonoBehaviour
 {
