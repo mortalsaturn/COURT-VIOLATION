@@ -15,7 +15,7 @@ public class DialogueNode
     public int nextNodeForOption1 = -1;
     public int nextNodeForOption2 = -1;
 
-    // For non-choice progression
+   
     public int nextNode = -1;
 }
 
@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
 {
     [Header("Scene Transition")]
     public SceneLoader sceneLoader;
-    public string nextSceneName;   // Set this in Inspector
+    public string nextSceneName;   
 
     [Header("Text Bubbles")]
     public GameObject npcBubble;
@@ -171,7 +171,7 @@ public class DialogueManager : MonoBehaviour
         DialogueNode node = dialogueNodes[currentNodeIndex];
 
         if (node.isChoiceNode)
-            return; // Wait for player input on choices
+            return; 
 
         if (node.nextNode != -1)
         {
@@ -239,14 +239,14 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue()
     {
-        // Optional: reset dialogue
+       
         currentNodeIndex = 0;
 
-        // Clear UI
+       
         npcTextBox.text = "";
         playerTextBox.text = "";
 
-        // Start first node
+        
         DisplayNode();
 
         // Switch to appropriate camera

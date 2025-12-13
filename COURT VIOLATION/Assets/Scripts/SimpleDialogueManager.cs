@@ -86,8 +86,7 @@ public class SimpleDialogueManager : MonoBehaviour
         speakerNameText.text = "";
         Debug.Log("Dialogue finished.");
 
-        // Optional: disable dialogue UI
-        // gameObject.SetActive(false);
+        
 
         // ---- Scene Transition ----
         if (sceneLoader != null && !string.IsNullOrEmpty(nextSceneName))
