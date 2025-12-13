@@ -9,6 +9,8 @@ public class SimpleEnemyAI : MonoBehaviour
     public float swingDistance;
     Hitbox[] hitboxes;
     Animator animator;
+    bool inEnemyZone;
+    public Collider enemyZone;
 
     void Awake()
     {
@@ -26,14 +28,12 @@ public class SimpleEnemyAI : MonoBehaviour
 
         if (ballDist <= swingDistance)
         {
-            Debug.Log("Distance from ball: " + ballDist);
-            Debug.Log("Swinging");
-
+            Move();
             Swing(hitboxes[0].baseVel);
         }
         else
         {
-            if (ballScript.lastHitter == "Player")
+            if (ballScript.lastHitter != "Enemy")
             {
                 Move();
             }
@@ -42,15 +42,20 @@ public class SimpleEnemyAI : MonoBehaviour
 
     void Move()
     {
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            new(
-                ballScript.predictedPoint.x - 1.2f,
-                transform.position.y,
-                ballScript.predictedPoint.z + 5f
-            ),
-            baseSpeed * Time.deltaTime
+        var moveCondition = ballTransform.position.z > enemyZone.bounds.min.z;
+        Vector3 target = new(
+            ballTransform.position.x - 1.2f,
+            transform.position.y,
+            ballTransform.position.z + 1.5f
         );
+        if (moveCondition)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                target,
+                baseSpeed * Time.deltaTime
+            );
+        }
     }
 
     void Swing(float velocity)
@@ -67,5 +72,10 @@ public class SimpleEnemyAI : MonoBehaviour
             animator.SetTrigger("Swing");
             animator.SetBool("isBallRight", ballScript.destination.x < transform.position.x);
         }
+    }
+
+    void OnTriggerStay(Collider trigger)
+    {
+        inEnemyZone = trigger.gameObject.layer == LayerMask.NameToLayer("EnemyZone");
     }
 }

@@ -100,7 +100,6 @@ public class Swing : MonoBehaviour
 
     private void PerformSwing(float velocity)
     {
-        Debug.Log("HB Vel: " + velocity);
         foreach (var hb in hitboxes)
         {
             hb.launchVel = velocity;

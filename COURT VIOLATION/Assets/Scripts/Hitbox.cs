@@ -7,7 +7,7 @@ public class Hitbox : MonoBehaviour
     public float baseVel,
         launchVel,
         maxVel;
-    public Transform hitArea;
+    public Collider hitArea;
 
     public string user;
 

@@ -9,6 +9,9 @@ using UnityEditor;
 public class Ball : MonoBehaviour
 {
     Rigidbody rb;
+    float bounces = 0f;
+    bool didBounce = false;
+    public Transform spawn;
     public string lastHitter;
     public Vector3 predictedPoint;
     public Vector3 destination;
@@ -30,6 +33,20 @@ public class Ball : MonoBehaviour
     {
         FindDirection();
         DrawTrajectory(rb);
+        if (bounces >= 2f)
+        {
+            bounces = 0;
+            didBounce = false;
+            ResetBall();
+        }
+    }
+
+    void ResetBall()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        lastHitter = "";
+        transform.position = spawn.position;
     }
 
     public void FindDirection()
@@ -44,14 +61,14 @@ public class Ball : MonoBehaviour
             Physics.Raycast(
                 trajectoryRay,
                 out hit,
-                10f,
+                15f,
                 destinationMask,
                 QueryTriggerInteraction.Collide
             )
         )
         {
             destination = hit.point;
-
+            Debug.DrawRay(transform.position, direction * 15, Color.red);
             // Check if the hit is the enemy's hit range
             isApproachingEnemy =
                 hit.collider.gameObject.layer == LayerMask.NameToLayer("EnemyHitRange");
@@ -74,14 +91,10 @@ public class Ball : MonoBehaviour
             {
                 if (hitboxScript.dynamicHitbox)
                 {
-                    float sx = hitboxScript.hitArea.localScale.x / 2;
-                    float sz = hitboxScript.hitArea.localScale.z / 2;
-                    float cx = hitboxScript.hitArea.transform.position.x;
-                    float cz = hitboxScript.hitArea.transform.position.z;
-                    float xMin = -sx + cx;
-                    float xMax = sx + cx;
-                    float zMin = -sz + cz;
-                    float zMax = sz + cz;
+                    float xMin = hitboxScript.hitArea.bounds.min.x;
+                    float xMax = hitboxScript.hitArea.bounds.max.x;
+                    float zMin = hitboxScript.hitArea.bounds.min.z;
+                    float zMax = hitboxScript.hitArea.bounds.max.z;
 
                     hitboxScript.AdjustLaunchAngle(rb, hitbox.transform, xMin, xMax, zMin, zMax);
                 }
@@ -100,6 +113,12 @@ public class Ball : MonoBehaviour
 
     void OnTriggerExit(Collider trigger)
     {
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("Hitbox"))
+        {
+            bounces = 0f;
+            didBounce = false;
+        }
+
         if (trigger.gameObject.layer == LayerMask.NameToLayer("EnemyZone"))
         {
             inEnemyZone = false;
@@ -108,12 +127,23 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (!didBounce)
+        {
+            bounces++;
+        }
+        didBounce = true;
+        Debug.Log("Bounces: " + bounces);
         if (pauseOnCollision)
         {
 #if UNITY_EDITOR
             EditorApplication.isPaused = true;
 #endif
         }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        didBounce = false;
     }
 
     void DrawTrajectory(Rigidbody rb, int steps = 30, float stepTime = 0.1f)
