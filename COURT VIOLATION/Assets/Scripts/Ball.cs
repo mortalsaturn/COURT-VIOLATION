@@ -69,13 +69,12 @@ public class Ball : MonoBehaviour
         {
             destination = hit.point;
             Debug.DrawRay(transform.position, direction * 15, Color.red);
-            // Check if the hit is the enemy's hit range
+
             isApproachingEnemy =
                 hit.collider.gameObject.layer == LayerMask.NameToLayer("EnemyHitRange");
         }
         else
         {
-            // No collision found
             isApproachingEnemy = false;
         }
     }
