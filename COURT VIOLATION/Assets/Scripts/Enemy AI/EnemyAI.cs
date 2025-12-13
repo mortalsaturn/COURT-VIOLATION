@@ -39,7 +39,7 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        // TEMPORARY: debug each subtree evaluation to see what dies where
+        // TEMPORARY
         Debug.Log("SwingSequence: " + swingSequence.Evaluate());
         Debug.Log("ChargeSequence: " + chargeSequence.Evaluate());
         Debug.Log("ChaseSequence: " + chaseSequence.Evaluate());

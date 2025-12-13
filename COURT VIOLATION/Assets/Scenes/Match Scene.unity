@@ -887,8 +887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85e7db8b45b547d2b34989b5fadea81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonClickSound
-  audioSource: {fileID: 0}
-  clickSound: {fileID: 8300000, guid: 60dcf67c9f8834d778ba08e80448211f, type: 3}
+  source: {fileID: 0}
+  clickClip: {fileID: 0}
 --- !u!114 &443582324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,7 +1066,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 90a4ea125b3bb4524bf9429975a8ad79, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.026
   m_Pitch: 1
   Loop: 1
   Mute: 0
