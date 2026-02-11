@@ -1645,6 +1645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7309721668183771872, guid: cc62dcbcd375c8943866fba6855068b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8042419437391526548, guid: cc62dcbcd375c8943866fba6855068b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2058,6 +2062,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 947859930}
     - target: {fileID: 5259233927167991962, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+      propertyPath: dynamicHitbox
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686701119613480444, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+      propertyPath: maxVel
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686701119613480444, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+      propertyPath: baseVel
+      value: 22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686701119613480444, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+      propertyPath: hitArea
+      value: 
+      objectReference: {fileID: 947859930}
+    - target: {fileID: 6686701119613480444, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
       propertyPath: dynamicHitbox
       value: 1
       objectReference: {fileID: 0}
