@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "Hold,Tap",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "56d820de-7b29-4148-89ea-b2f0449c49f7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -188,7 +197,7 @@
                 {
                     "name": "",
                     "id": "dc5b3851-d698-44c6-b229-44e9f4632ad8",
-                    "path": "<Keyboard>/space",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard",
@@ -199,11 +208,22 @@
                 {
                     "name": "",
                     "id": "82de1e5d-5ec4-40e3-986b-62de083529d1",
-                    "path": "<Keyboard>/z",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Lob",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06b34bd4-402c-417e-a807-521b5a026016",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -217,6 +237,11 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using JetBrains.Annotations;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,7 @@ public class Movement : MonoBehaviour
     public float sprintModifier;
     public float quickStepDistance,
         quickStepDuration;
-
+    public float jumpForce;
     Renderer rend;
     Color baseColor;
     private Vector3 moveDirection;
@@ -19,10 +20,12 @@ public class Movement : MonoBehaviour
         isQuickStepping;
 
     GameObject ball;
+    Rigidbody rb;
 
     void Awake()
     {
         rend = GetComponent<Renderer>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Start()
@@ -34,6 +37,11 @@ public class Movement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        rb.AddForce(transform.up * jumpForce);
     }
 
     public void OnSprint(InputAction.CallbackContext context)
