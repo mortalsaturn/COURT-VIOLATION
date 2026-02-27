@@ -20,6 +20,8 @@ public class Swing : MonoBehaviour
     public Coroutine chargeRoutine;
     Hitbox[] hitboxes;
     Renderer rend;
+    private bool basicSwinging,
+        lobbing;
 
     void Awake()
     {
@@ -35,7 +37,19 @@ public class Swing : MonoBehaviour
         hitboxes = GetComponentsInChildren<Hitbox>();
     }
 
-    public void OnSwing(InputAction.CallbackContext context)
+    void Update()
+    {
+        if (isCharging)
+        {
+            rend.material.color = Color.orange;
+        }
+        else
+        {
+            rend.material.color = baseColor;
+        }
+    }
+
+    private void ChargeAndSwing(InputAction.CallbackContext context)
     {
         if (context.interaction is HoldInteraction && context.performed)
         {
@@ -62,31 +76,16 @@ public class Swing : MonoBehaviour
         }
     }
 
+    public void OnSwing(InputAction.CallbackContext context)
+    {
+        basicSwinging = true;
+        ChargeAndSwing(context);
+    }
+
     public void OnLob(InputAction.CallbackContext context)
     {
-        if (context.interaction is HoldInteraction && context.performed)
-        {
-            if (chargeRoutine == null)
-            {
-                chargeRoutine = StartCoroutine(Charge());
-            }
-            isCharging = true;
-        }
-        if (context.interaction is HoldInteraction && context.canceled)
-        {
-            if (chargeRoutine != null)
-            {
-                StopCoroutine(chargeRoutine);
-                chargeRoutine = null;
-            }
-            Lob(Mathf.Min(hitboxes[0].baseVel + addedVelocity, hitboxes[0].maxVel));
-            addedVelocity = 0;
-            isCharging = false;
-        }
-        if (context.interaction is TapInteraction && context.started)
-        {
-            Lob(hitboxes[0].baseVel);
-        }
+        lobbing = true;
+        ChargeAndSwing(context);
     }
 
     private IEnumerator Charge()
@@ -104,41 +103,41 @@ public class Swing : MonoBehaviour
         {
             hb.launchVel = velocity;
         }
+        if (basicSwinging)
+        {
+            BasicSwing();
+        }
+        else if (lobbing)
+        {
+            Lob();
+        }
+    }
 
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        if (!stateInfo.IsName("LeftBasicSwing") && !stateInfo.IsName("RightBasicSwing"))
+    private void BasicSwing()
+    {
+        AnimatorStateChecker();
+        if (basicSwinging)
         {
             animator.SetTrigger("Swing");
             animator.SetBool("isBallRight", ballInfo.destination.x >= transform.position.x);
         }
+        basicSwinging = false;
     }
 
-    private void Lob(float velocity)
+    private void Lob()
     {
-        Debug.Log("HB Vel: " + velocity);
-        foreach (var hb in hitboxes)
-        {
-            hb.launchVel = velocity;
-        }
-
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        if (!stateInfo.IsName("Lob"))
+        if (lobbing)
         {
             animator.SetTrigger("Lob");
         }
+        lobbing = false;
     }
 
-    void Update()
+    private void AnimatorStateChecker()
     {
-        if (isCharging)
-        {
-            rend.material.color = Color.orange;
-        }
-        else
-        {
-            rend.material.color = baseColor;
-        }
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        basicSwinging = !stateInfo.IsName("LeftBasicSwing") && !stateInfo.IsName("RightBasicSwing");
+        lobbing = !stateInfo.IsName("Lob");
     }
 }
