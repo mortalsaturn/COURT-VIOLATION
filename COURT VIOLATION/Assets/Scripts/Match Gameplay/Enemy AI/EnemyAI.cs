@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField]
+    private NewCharacterStats stats;
     private Node root;
     private Node swingSequence;
     private Node chargeSequence;
@@ -112,7 +114,7 @@ public class EnemyAI : MonoBehaviour
 
     public NodeState OnSwing()
     {
-        float vel = Mathf.Min(hitboxes[0].baseVel + addedVelocity, hitboxes[0].maxVel);
+        float vel = Mathf.Min(stats.shotBaseVel + addedVelocity, stats.shotMaxVel);
         NodeState result = Swing(vel);
 
         // If swing finished, clear charge state

@@ -2,14 +2,21 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    public bool dynamicHitbox;
-
-    public float baseVel,
-        launchVel,
-        maxVel;
+    [SerializeField]
+    NewCharacterStats stats;
+    public ShotType shotType;
+    float baseVel;
+    public float launchVel;
+    float maxVel;
     public Collider hitArea;
 
     public string user;
+
+    void Awake()
+    {
+        baseVel = stats.shotBaseVel;
+        maxVel = stats.shotMaxVel;
+    }
 
     void Start()
     {
@@ -87,5 +94,16 @@ public class Hitbox : MonoBehaviour
         }
 
         Debug.LogWarning("Could not find valid landing within limits.");
+    }
+
+    public ShotData CreateShotData(Transform hitboxTransform)
+    {
+        return new ShotData
+        {
+            shotType = shotType,
+            direction = hitboxTransform.forward,
+            velocity = launchVel,
+            user = user,
+        };
     }
 }

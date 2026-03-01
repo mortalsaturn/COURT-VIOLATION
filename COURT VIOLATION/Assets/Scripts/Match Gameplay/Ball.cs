@@ -88,15 +88,13 @@ public class Ball : MonoBehaviour
 
             if (lastHitter != hitboxScript.user)
             {
-                if (hitboxScript.dynamicHitbox)
-                {
-                    float xMin = hitboxScript.hitArea.bounds.min.x;
-                    float xMax = hitboxScript.hitArea.bounds.max.x;
-                    float zMin = hitboxScript.hitArea.bounds.min.z;
-                    float zMax = hitboxScript.hitArea.bounds.max.z;
+                float xMin = hitboxScript.hitArea.bounds.min.x;
+                float xMax = hitboxScript.hitArea.bounds.max.x;
+                float zMin = hitboxScript.hitArea.bounds.min.z;
+                float zMax = hitboxScript.hitArea.bounds.max.z;
 
-                    hitboxScript.AdjustLaunchAngle(rb, hitbox.transform, xMin, xMax, zMin, zMax);
-                }
+                hitboxScript.AdjustLaunchAngle(rb, hitbox.transform, xMin, xMax, zMin, zMax);
+
                 hitboxScript.Launch(rb, hitbox.transform.forward, hitboxScript.launchVel);
                 lastHitter = hitboxScript.user;
                 predictedPoint = hitboxScript.PredictLandingPoint(rb);
@@ -132,6 +130,7 @@ public class Ball : MonoBehaviour
         }
         didBounce = true;
         Debug.Log("Bounces: " + bounces);
+
         if (pauseOnCollision)
         {
 #if UNITY_EDITOR
