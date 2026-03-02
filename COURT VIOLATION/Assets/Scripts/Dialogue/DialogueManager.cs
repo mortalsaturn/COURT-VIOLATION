@@ -3,31 +3,43 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
+#region DATA
 [System.Serializable]
 public class DialogueNode
 {
     [TextArea(2, 5)] public string npcText;
     [TextArea(2, 5)] public string playerText;
 
+    [Header("Portraits")]
+    public Sprite npcPortrait;
+    public Sprite playerPortrait;
+
+    [Header("Choices")]
     public bool isChoiceNode;
     public string option1Text;
     public string option2Text;
     public int nextNodeForOption1 = -1;
     public int nextNodeForOption2 = -1;
 
-   
+    [Header("Flow")]
     public int nextNode = -1;
 }
+#endregion
 
 public class DialogueManager : MonoBehaviour
 {
+    #region REFERENCES
     [Header("Scene Transition")]
     public SceneLoader sceneLoader;
-    public string nextSceneName;   
+    public string nextSceneName;
 
     [Header("Text Bubbles")]
     public GameObject npcBubble;
     public GameObject playerBubble;
+
+    [Header("Portrait UI")]
+    public Image npcPortraitImage;
+    public Image playerPortraitImage;
 
     [Header("Camera Control")]
     public CameraManager cameraManager;
@@ -43,178 +55,140 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue Data")]
     public DialogueNode[] dialogueNodes;
     public float typingSpeed = 0.03f;
+    #endregion
 
-    private int currentNodeIndex = 0;
-    private bool isTyping = false;
-    private bool npcFinished = false;
-    private bool playerFinished = false;
-
+    #region STATE
+    private int currentNodeIndex;
+    private bool isTyping;
     private Coroutine typingRoutine;
-    private bool dialogueActive = false;
+    #endregion
 
+    #region UNITY
     void Start()
     {
         option1Button.onClick.AddListener(() => ChooseOption(1));
         option2Button.onClick.AddListener(() => ChooseOption(2));
-
         HideChoices();
-
+        HideAllVisuals();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isTyping && !CurrentNode.isChoiceNode)
         {
-            if (!isTyping && !dialogueNodes[currentNodeIndex].isChoiceNode)
-            {
-                GoToNextNode();
-            }
+            GoToNextNode();
         }
+    }
+    #endregion
+
+    #region CORE FLOW
+    public void StartDialogue()
+    {
+        currentNodeIndex = 0;
+        DisplayNode();
+        cameraManager?.SetCamera(CameraManager.CamState.SCENE);
     }
 
     void DisplayNode()
     {
-
-        if (currentNodeIndex < 0 || currentNodeIndex >= dialogueNodes.Length)
+        if (!IsValidNode())
         {
-            Debug.LogError("Invalid dialogue index: " + currentNodeIndex);
             StartCoroutine(EndDialogue());
             return;
         }
-        DialogueNode node = dialogueNodes[currentNodeIndex];
 
-        npcTextBox.text = "";
-        playerTextBox.text = "";
-
+        StopTyping();
+        ClearText();
         HideChoices();
-        StopAllCoroutines();
+        HideAllVisuals();
 
-    
-        typingRoutine = StartCoroutine(TypeDialogue(node));
-        
+        typingRoutine = StartCoroutine(TypeDialogue(CurrentNode));
     }
 
     IEnumerator TypeDialogue(DialogueNode node)
     {
         isTyping = true;
 
-        // Hide both bubbles at the start
-        if (npcBubble != null) npcBubble.SetActive(false);
-        if (playerBubble != null) playerBubble.SetActive(false);
-
-        // ----- NPC SPEAKING -----
         if (!string.IsNullOrEmpty(node.npcText))
-        {
-            // Switch to NPC camera
-            if (cameraManager != null)
-                cameraManager.SetCamera(CameraManager.CamState.NPC);
+            yield return TypeSpeaker(
+                node.npcText,
+                npcTextBox,
+                npcBubble,
+                npcPortraitImage,
+                node.npcPortrait,
+                CameraManager.CamState.NPC
+            );
 
-            if (npcBubble != null) npcBubble.SetActive(true);
-            if (playerBubble != null) playerBubble.SetActive(false);
-
-            npcTextBox.text = "";
-            npcFinished = false;
-
-            foreach (char c in node.npcText)
-            {
-                npcTextBox.text += c;
-                yield return new WaitForSeconds(typingSpeed);
-            }
-
-            npcFinished = true;
-            yield return new WaitForSeconds(0.25f);
-        }
-
-        // ----- PLAYER SPEAKING -----
         if (!string.IsNullOrEmpty(node.playerText))
-        {
-            // Switch to PLAYER camera
-            if (cameraManager != null)
-                cameraManager.SetCamera(CameraManager.CamState.PLAYER);
+            yield return TypeSpeaker(
+                node.playerText,
+                playerTextBox,
+                playerBubble,
+                playerPortraitImage,
+                node.playerPortrait,
+                CameraManager.CamState.PLAYER
+            );
 
-            if (npcBubble != null) npcBubble.SetActive(false);
-            if (playerBubble != null) playerBubble.SetActive(true);
-
-            playerTextBox.text = "";
-            playerFinished = false;
-
-            foreach (char c in node.playerText)
-            {
-                playerTextBox.text += c;
-                yield return new WaitForSeconds(typingSpeed);
-            }
-
-            playerFinished = true;
-        }
-
-        // Done typing
         isTyping = false;
 
-        // ----- CHOICES -----
         if (node.isChoiceNode)
         {
-            // Switch to SCENE camera
-            if (cameraManager != null)
-                cameraManager.SetCamera(CameraManager.CamState.SCENE);
-
-            if (npcBubble != null) npcBubble.SetActive(false);
-            if (playerBubble != null) playerBubble.SetActive(false);
-
+            cameraManager?.SetCamera(CameraManager.CamState.SCENE);
             ShowChoices(node);
         }
     }
+    #endregion
 
-
-
-    void GoToNextNode()
+    #region HELPERS
+    IEnumerator TypeSpeaker(
+        string text,
+        TMP_Text textBox,
+        GameObject bubble,
+        Image portraitImage,
+        Sprite portrait,
+        CameraManager.CamState camState
+    )
     {
-        DialogueNode node = dialogueNodes[currentNodeIndex];
+        cameraManager?.SetCamera(camState);
 
-        if (node.isChoiceNode)
-            return; 
+        SetBubble(bubble);
+        SetPortrait(portraitImage, portrait);
 
-        if (node.nextNode != -1)
+        textBox.text = "";
+
+        foreach (char c in text)
         {
-            currentNodeIndex = node.nextNode;
-            DisplayNode();
+            textBox.text += c;
+            yield return new WaitForSeconds(typingSpeed);
         }
-        else
-        {
-            npcTextBox.text = "";
-            playerTextBox.text = "";
-            Debug.Log("Dialogue ended.");
 
-            StartCoroutine(EndDialogue());
-
-        }
-    }
-    IEnumerator EndDialogue()
-    {
-        dialogueActive = false;
-
-        // Switch camera back
-        if (cameraManager != null)
-            cameraManager.SetCamera(CameraManager.CamState.SCENE);
-
-        // Re-enable movement
-        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-        PlayerMovement controller = player.GetComponent<PlayerMovement>();
-        if (controller != null) controller.enabled = true;
-
-        // ---- New: Trigger Scene Transition ----
-        if (sceneLoader != null && !string.IsNullOrEmpty(nextSceneName))
-        {
-            yield return sceneLoader.LoadSceneWithTransition(nextSceneName);
-        }
+        yield return new WaitForSeconds(0.25f);
     }
 
+    void SetBubble(GameObject activeBubble)
+    {
+        if (npcBubble) npcBubble.SetActive(activeBubble == npcBubble);
+        if (playerBubble) playerBubble.SetActive(activeBubble == playerBubble);
+    }
 
+    void SetPortrait(Image image, Sprite sprite)
+    {
+        if (!image) return;
+
+        image.sprite = sprite;
+        image.gameObject.SetActive(sprite != null);
+
+        if (image == npcPortraitImage && playerPortraitImage)
+            playerPortraitImage.gameObject.SetActive(false);
+
+        if (image == playerPortraitImage && npcPortraitImage)
+            npcPortraitImage.gameObject.SetActive(false);
+    }
 
     void ShowChoices(DialogueNode node)
     {
         option1Button.gameObject.SetActive(true);
         option2Button.gameObject.SetActive(true);
-
         option1Text.text = node.option1Text;
         option2Text.text = node.option2Text;
     }
@@ -225,33 +199,71 @@ public class DialogueManager : MonoBehaviour
         option2Button.gameObject.SetActive(false);
     }
 
-    void ChooseOption(int option)
+    void HideAllVisuals()
     {
-        DialogueNode node = dialogueNodes[currentNodeIndex];
-        HideChoices();
-
-        if (option == 1)
-            currentNodeIndex = node.nextNodeForOption1;
-        else
-            currentNodeIndex = node.nextNodeForOption2;
-
-        DisplayNode();
+        if (npcBubble) npcBubble.SetActive(false);
+        if (playerBubble) playerBubble.SetActive(false);
+        if (npcPortraitImage) npcPortraitImage.gameObject.SetActive(false);
+        if (playerPortraitImage) playerPortraitImage.gameObject.SetActive(false);
     }
-    public void StartDialogue()
-    {
-       
-        currentNodeIndex = 0;
 
-       
+    void ClearText()
+    {
         npcTextBox.text = "";
         playerTextBox.text = "";
-
-        
-        DisplayNode();
-
-        // Switch to appropriate camera
-        if (cameraManager != null)
-            cameraManager.SetCamera(CameraManager.CamState.SCENE);
     }
 
+    void StopTyping()
+    {
+        if (typingRoutine != null)
+            StopCoroutine(typingRoutine);
+
+        isTyping = false;
+    }
+
+    void GoToNextNode()
+    {
+        int next = CurrentNode.nextNode;
+        if (next == -1)
+        {
+            StartCoroutine(EndDialogue());
+            return;
+        }
+
+        currentNodeIndex = next;
+        DisplayNode();
+    }
+
+    void ChooseOption(int option)
+    {
+        currentNodeIndex = option == 1
+            ? CurrentNode.nextNodeForOption1
+            : CurrentNode.nextNodeForOption2;
+
+        DisplayNode();
+    }
+
+    IEnumerator EndDialogue()
+    {
+        HideAllVisuals();
+        HideChoices();
+
+        cameraManager?.SetCamera(CameraManager.CamState.SCENE);
+
+        PlayerMovement pm = GameObject.FindGameObjectWithTag("Player")
+            ?.GetComponent<PlayerMovement>();
+
+        if (pm) pm.enabled = true;
+
+        if (sceneLoader && !string.IsNullOrEmpty(nextSceneName))
+            yield return sceneLoader.LoadSceneWithTransition(nextSceneName);
+    }
+
+    bool IsValidNode()
+    {
+        return currentNodeIndex >= 0 && currentNodeIndex < dialogueNodes.Length;
+    }
+
+    DialogueNode CurrentNode => dialogueNodes[currentNodeIndex];
+    #endregion
 }

@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 555, y: 330}
+  m_AnchoredPosition: {x: 661.85, y: -295}
   m_SizeDelta: {x: 596.302, y: 155.2541}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59594418
@@ -634,17 +634,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133538801}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 481272448}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.7976, y: 56.08014}
-  m_SizeDelta: {x: 535.0442, y: 142.0343}
+  m_AnchoredPosition: {x: 78.44081, y: -10.4022}
+  m_SizeDelta: {x: 685.4602, y: 226.8227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &133538803
 MonoBehaviour:
@@ -704,6 +704,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -731,7 +732,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 3.7449722, y: 0, z: 0, w: 0.8441162}
+  m_margin: {x: -4.078148, y: 0, z: 0, w: 0.8441162}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1115,6 +1116,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 492150419}
   m_LocalEulerAnglesHint: {x: 11.746, y: 0, z: 0}
+--- !u!1 &197897999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197898000}
+  - component: {fileID: 197898002}
+  - component: {fileID: 197898001}
+  m_Layer: 5
+  m_Name: 'Lilith Image '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &197898000
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197897999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 591625168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -711, y: 187.93}
+  m_SizeDelta: {x: 736.5298, y: 709.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &197898001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197897999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &197898002
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197897999}
+  m_CullTransparentMesh: 1
 --- !u!1001 &205900611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1345,6 +1421,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &228877043
 MeshFilter:
@@ -1983,7 +2060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &481272448
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1991,18 +2068,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481272447}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 133538802}
   m_Father: {fileID: 591625168}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -523.7064, y: 289.48}
-  m_SizeDelta: {x: 872.5858, y: 406.95}
+  m_AnchoredPosition: {x: 105.39734, y: 308.50732}
+  m_SizeDelta: {x: 1123.1333, y: 475.9354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &481272449
 MonoBehaviour:
@@ -2024,7 +2101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 82126ad3d88474735becbbb52d88d3b9, type: 3}
+  m_Texture: {fileID: 2800000, guid: 05e76aec1f2b5488dbee5b0a171c2717, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2064,17 +2141,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487838477}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 692976945}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.810994, y: 55.3521}
-  m_SizeDelta: {x: 676.3054, y: 160.1025}
+  m_AnchoredPosition: {x: 40.881413, y: -2.4546}
+  m_SizeDelta: {x: 785.6115, y: 183.1933}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487838479
 MonoBehaviour:
@@ -2134,6 +2211,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2161,7 +2239,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0.8441162}
+  m_margin: {x: 0, y: 0, z: 7.0733337, w: 0.8441162}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2266,6 +2344,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &492150418
 MeshFilter:
@@ -2460,6 +2539,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &509761929
 MeshFilter:
@@ -2570,6 +2650,7 @@ GameObject:
   - component: {fileID: 537866866}
   - component: {fileID: 537866865}
   - component: {fileID: 537866864}
+  - component: {fileID: 537866868}
   m_Layer: 0
   m_Name: wall
   m_TagString: Untagged
@@ -2646,6 +2727,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &537866866
 MeshFilter:
@@ -2670,6 +2752,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!65 &537866868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537866863}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.000002, y: 3.4444798e-14, z: 9.999999}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &543842571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3012,7 +3115,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 900}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
@@ -3055,8 +3158,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 197898000}
   - {fileID: 1860566056}
   - {fileID: 481272448}
+  - {fileID: 1700438356}
   - {fileID: 692976945}
   - {fileID: 59594417}
   - {fileID: 1997261700}
@@ -3237,6 +3342,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3512,7 +3618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &692976945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3520,18 +3626,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692976944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 487838478}
   m_Father: {fileID: 591625168}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392.76, y: 289.48}
-  m_SizeDelta: {x: 960.3386, y: 406.95}
+  m_AnchoredPosition: {x: -41, y: 323}
+  m_SizeDelta: {x: 1123.133, y: 475.9354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692976946
 MonoBehaviour:
@@ -3553,7 +3659,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ba6f34f2c7da748b2a1928a60f4c861e, type: 3}
+  m_Texture: {fileID: 2800000, guid: 709f6e7e46eb24251bae7df854bee2cc, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4342,7 +4448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1024142686
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4411,7 +4517,7 @@ Transform:
   m_GameObject: {fileID: 1024142685}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10232059, y: -0, z: -0, w: 0.9947515}
-  m_LocalPosition: {x: 0.069999695, y: 0.6, z: -2.5100007}
+  m_LocalPosition: {x: 0.069999695, y: 0.68, z: -2.894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4552,6 +4658,7 @@ GameObject:
   - component: {fileID: 1080662712}
   - component: {fileID: 1080662711}
   - component: {fileID: 1080662710}
+  - component: {fileID: 1080662714}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -4628,6 +4735,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1080662712
 MeshFilter:
@@ -4652,6 +4760,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1080662714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080662709}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1086571583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4988,6 +5117,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -6162,7 +6292,7 @@ Transform:
   m_GameObject: {fileID: 1554830634}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9848078, z: -0.17364816, w: 0}
-  m_LocalPosition: {x: 0, y: 1.307, z: 3.165}
+  m_LocalPosition: {x: 0, y: 1.508, z: 3.717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6354,6 +6484,81 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c75a50f04c0bd9945bee66288a6124aa, type: 3}
+--- !u!1 &1700438355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1700438356}
+  - component: {fileID: 1700438358}
+  - component: {fileID: 1700438357}
+  m_Layer: 5
+  m_Name: Persephone Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1700438356
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700438355}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 591625168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 624.74, y: 212.95}
+  m_SizeDelta: {x: 670.5298, y: 654.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1700438357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700438355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1700438358
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700438355}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1709036573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6773,6 +6978,8 @@ MonoBehaviour:
   nextSceneName: Match Scene
   npcBubble: {fileID: 692976944}
   playerBubble: {fileID: 481272447}
+  npcPortraitImage: {fileID: 1700438357}
+  playerPortraitImage: {fileID: 197898001}
   cameraManager: {fileID: 997473142}
   npcTextBox: {fileID: 487838479}
   playerTextBox: {fileID: 133538803}
@@ -6783,6 +6990,8 @@ MonoBehaviour:
   dialogueNodes:
   - npcText: 
     playerText: '*Inner thought* This wasn''t in the Chief''s debriefing.  '
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6791,6 +7000,8 @@ MonoBehaviour:
     nextNode: 1
   - npcText: Hey, hey you. Do I know you?
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 1
     option1Text: Play it cool
     option2Text: Be rude
@@ -6799,6 +7010,8 @@ MonoBehaviour:
     nextNode: 0
   - npcText: 
     playerText: 'Yeah, I play here like every other night. '
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6807,6 +7020,8 @@ MonoBehaviour:
     nextNode: 4
   - npcText: 
     playerText: Why do you want to know?
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6815,6 +7030,8 @@ MonoBehaviour:
     nextNode: 5
   - npcText: With that racket you'd be hard to miss.
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6823,6 +7040,8 @@ MonoBehaviour:
     nextNode: 6
   - npcText: 'The boss is curious. '
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6831,6 +7050,8 @@ MonoBehaviour:
     nextNode: 7
   - npcText: 
     playerText: OMG, what type of mascara are you wearing? I love mascara.
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6839,6 +7060,8 @@ MonoBehaviour:
     nextNode: 8
   - npcText: 
     playerText: The boss is curious in me? How would I go about talking to him.
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6847,6 +7070,8 @@ MonoBehaviour:
     nextNode: 9
   - npcText: You mean my eyeliner.
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6855,6 +7080,8 @@ MonoBehaviour:
     nextNode: 9
   - npcText: Nice try. Enough playing around who are you.
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6863,6 +7090,8 @@ MonoBehaviour:
     nextNode: 10
   - npcText: 
     playerText: I'm not telling some wannabe punk my name, you first.
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6871,6 +7100,8 @@ MonoBehaviour:
     nextNode: 11
   - npcText: 'If you insist. This wannabe punks name is Persephone. '
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6879,6 +7110,8 @@ MonoBehaviour:
     nextNode: 12
   - npcText: 
     playerText: 'Yawn, so your nobody important '
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6887,6 +7120,8 @@ MonoBehaviour:
     nextNode: 13
   - npcText: I don't know if i would count a floor boss unimportant.
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 1
     option1Text: Apologize
     option2Text: Act like a know-it-all
@@ -6895,6 +7130,8 @@ MonoBehaviour:
     nextNode: 0
   - npcText: 
     playerText: 'Sorry, this really is my first time here. '
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6903,6 +7140,8 @@ MonoBehaviour:
     nextNode: 16
   - npcText: 
     playerText: I knew who you were all along.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6911,6 +7150,8 @@ MonoBehaviour:
     nextNode: 16
   - npcText: 
     playerText: My name is uhh Lilith.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6919,6 +7160,8 @@ MonoBehaviour:
     nextNode: 17
   - npcText: Your not a cop uhh Lilith.
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6927,6 +7170,8 @@ MonoBehaviour:
     nextNode: 18
   - npcText: 
     playerText: Would I make it so obvious?
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6935,6 +7180,8 @@ MonoBehaviour:
     nextNode: 19
   - npcText: 'Or are you trying to throw me off. '
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6943,6 +7190,8 @@ MonoBehaviour:
     nextNode: 20
   - npcText: 
     playerText: I'm just here to play tennis. Cops despise tennis.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6951,6 +7200,8 @@ MonoBehaviour:
     nextNode: 21
   - npcText: 'That is true. Mmmm, you won''t make it far with that racket. '
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6959,6 +7210,8 @@ MonoBehaviour:
     nextNode: 22
   - npcText: 
     playerText: It was good enough for my mom.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6967,6 +7220,8 @@ MonoBehaviour:
     nextNode: 23
   - npcText: And who is your mom?
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 1
     option1Text: Be vulnerable
     option2Text: Lie
@@ -6975,6 +7230,8 @@ MonoBehaviour:
     nextNode: 0
   - npcText: 
     playerText: She was one of the tennis players apart of the HCC match.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6983,6 +7240,8 @@ MonoBehaviour:
     nextNode: 26
   - npcText: 
     playerText: She liked collecting rackets from before tennis was banned.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6991,6 +7250,8 @@ MonoBehaviour:
     nextNode: 27
   - npcText: I see, well us kids of tennis players must stick together.
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -6999,6 +7260,8 @@ MonoBehaviour:
     nextNode: 28
   - npcText: How weird of her....
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7007,6 +7270,8 @@ MonoBehaviour:
     nextNode: 30
   - npcText: 
     playerText: Wait, your parents were tennis players?
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7016,6 +7281,8 @@ MonoBehaviour:
   - npcText: 'My dad just played a country clubs about business deals. Now he is
       a deadbeat drunk. '
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7024,6 +7291,8 @@ MonoBehaviour:
     nextNode: 30
   - npcText: 
     playerText: Can I ask you something?
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7032,6 +7301,8 @@ MonoBehaviour:
     nextNode: 31
   - npcText: Go for it.
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7040,6 +7311,8 @@ MonoBehaviour:
     nextNode: 32
   - npcText: 
     playerText: Does every floor here have floor bosses like yourself.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7048,6 +7321,8 @@ MonoBehaviour:
     nextNode: 33
   - npcText: 'Wow you really are a newbie, but yes there are. '
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7056,6 +7331,8 @@ MonoBehaviour:
     nextNode: 34
   - npcText: 
     playerText: How do I make it to the big boss.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7065,6 +7342,8 @@ MonoBehaviour:
   - npcText: Slow your roll, you must beat me first then then the other bosses before
       you think about him.
     playerText: 
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7073,6 +7352,8 @@ MonoBehaviour:
     nextNode: 36
   - npcText: 
     playerText: Let's go right now then.
+    npcPortrait: {fileID: 0}
+    playerPortrait: {fileID: 0}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7082,6 +7363,8 @@ MonoBehaviour:
   - npcText: I like your fire so I'm gonna make you an offer. If you beat me I'll
       help you find the big boss and if I beat you I get a new lackey. Deal?
     playerText: 
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7090,6 +7373,8 @@ MonoBehaviour:
     nextNode: 38
   - npcText: 
     playerText: Bring it.
+    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7475,14 +7760,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990790126}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
@@ -7612,7 +7897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 555, y: 130}
+  m_AnchoredPosition: {x: 661.85, y: -462.37}
   m_SizeDelta: {x: 596.302, y: 155.2541}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1997261701
@@ -7792,6 +8077,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
