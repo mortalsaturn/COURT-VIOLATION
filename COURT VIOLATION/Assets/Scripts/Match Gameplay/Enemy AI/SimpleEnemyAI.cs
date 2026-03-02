@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SimpleEnemyAI : MonoBehaviour
 {
+    [SerializeField]
+    private NewCharacterStats stats;
     public Ball ballScript;
     public Transform ballTransform;
     public float baseSpeed;
@@ -29,7 +32,7 @@ public class SimpleEnemyAI : MonoBehaviour
         if (ballDist <= swingDistance)
         {
             Move();
-            Swing(hitboxes[0].baseVel);
+            Swing(stats.shotBaseVel);
         }
         else
         {

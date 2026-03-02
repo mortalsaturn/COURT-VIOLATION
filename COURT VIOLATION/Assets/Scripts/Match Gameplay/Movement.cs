@@ -7,11 +7,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Renderer))]
 public class Movement : MonoBehaviour
 {
-    public float baseSpeed;
-    public float sprintModifier;
-    public float quickStepDistance,
+    [SerializeField]
+    NewCharacterStats stats;
+    float baseSpeed;
+    float sprintModifier;
+    float quickStepDistance,
         quickStepDuration;
-    public float jumpForce;
+    float jumpForce;
     Renderer rend;
     Color baseColor;
     private Vector3 moveDirection;
@@ -26,6 +28,12 @@ public class Movement : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody>();
+
+        baseSpeed = stats.baseSpeed;
+        sprintModifier = stats.sprintModifier;
+        quickStepDistance = stats.quickStepDistance;
+        quickStepDuration = stats.quickStepDuration;
+        jumpForce = stats.jumpForce;
     }
 
     void Start()
