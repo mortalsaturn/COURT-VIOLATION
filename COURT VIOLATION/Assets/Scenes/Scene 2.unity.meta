@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: a680714a8f9f94f65bdfc706ab104aca
+guid: a65c8cc3c5d794ff292474ea9a729d18
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 333554
+  packageName: Low-Poly Desert Environment Pack
+  packageVersion: 1.0
+  assetPath: Assets/Tiny Teacup Studio/Low Poly Desert Environment/Demo/DemoScene.unity
+  uploadId: 800150

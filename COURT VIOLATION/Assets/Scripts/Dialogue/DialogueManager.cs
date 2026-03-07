@@ -74,10 +74,12 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isTyping && !CurrentNode.isChoiceNode)
-        {
-            GoToNextNode();
-        }
+        if (!IsValidNode()) return;
+
+    if (Input.GetMouseButtonDown(0) && !isTyping && !CurrentNode.isChoiceNode)
+    {
+        GoToNextNode();
+    }
     }
     #endregion
 

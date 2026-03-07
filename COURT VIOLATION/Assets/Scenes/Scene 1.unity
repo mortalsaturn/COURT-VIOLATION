@@ -1133,7 +1133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &197898000
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1150,8 +1150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -711, y: 187.93}
-  m_SizeDelta: {x: 736.5298, y: 709.1}
+  m_AnchoredPosition: {x: -663.74, y: 254.77}
+  m_SizeDelta: {x: 592.5272, y: 570.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &197898001
 MonoBehaviour:
@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+  m_Sprite: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2078,7 +2078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105.39734, y: 308.50732}
+  m_AnchoredPosition: {x: -68, y: 308}
   m_SizeDelta: {x: 1123.1333, y: 475.9354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &481272449
@@ -3618,7 +3618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &692976945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6501,7 +6501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1700438356
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6518,8 +6518,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 624.74, y: 212.95}
-  m_SizeDelta: {x: 670.5298, y: 654.1}
+  m_AnchoredPosition: {x: 671.38, y: 249.63}
+  m_SizeDelta: {x: 592.5272, y: 570.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1700438357
 MonoBehaviour:
@@ -6541,7 +6541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+  m_Sprite: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6990,8 +6990,8 @@ MonoBehaviour:
   dialogueNodes:
   - npcText: 
     playerText: '*Inner thought* This wasn''t in the Chief''s debriefing.  '
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7000,8 +7000,8 @@ MonoBehaviour:
     nextNode: 1
   - npcText: Hey, hey you. Do I know you?
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 1
     option1Text: Play it cool
     option2Text: Be rude
@@ -7010,8 +7010,8 @@ MonoBehaviour:
     nextNode: 0
   - npcText: 
     playerText: 'Yeah, I play here like every other night. '
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7020,8 +7020,8 @@ MonoBehaviour:
     nextNode: 4
   - npcText: 
     playerText: Why do you want to know?
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7030,8 +7030,8 @@ MonoBehaviour:
     nextNode: 5
   - npcText: With that racket you'd be hard to miss.
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7040,8 +7040,8 @@ MonoBehaviour:
     nextNode: 6
   - npcText: 'The boss is curious. '
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7050,8 +7050,8 @@ MonoBehaviour:
     nextNode: 7
   - npcText: 
     playerText: OMG, what type of mascara are you wearing? I love mascara.
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7060,8 +7060,8 @@ MonoBehaviour:
     nextNode: 8
   - npcText: 
     playerText: The boss is curious in me? How would I go about talking to him.
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7070,8 +7070,8 @@ MonoBehaviour:
     nextNode: 9
   - npcText: You mean my eyeliner.
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7080,8 +7080,8 @@ MonoBehaviour:
     nextNode: 9
   - npcText: Nice try. Enough playing around who are you.
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7090,8 +7090,8 @@ MonoBehaviour:
     nextNode: 10
   - npcText: 
     playerText: I'm not telling some wannabe punk my name, you first.
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7100,8 +7100,8 @@ MonoBehaviour:
     nextNode: 11
   - npcText: 'If you insist. This wannabe punks name is Persephone. '
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7110,8 +7110,8 @@ MonoBehaviour:
     nextNode: 12
   - npcText: 
     playerText: 'Yawn, so your nobody important '
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7120,8 +7120,8 @@ MonoBehaviour:
     nextNode: 13
   - npcText: I don't know if i would count a floor boss unimportant.
     playerText: 
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 1
     option1Text: Apologize
     option2Text: Act like a know-it-all
@@ -7130,8 +7130,8 @@ MonoBehaviour:
     nextNode: 0
   - npcText: 
     playerText: 'Sorry, this really is my first time here. '
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7140,8 +7140,8 @@ MonoBehaviour:
     nextNode: 16
   - npcText: 
     playerText: I knew who you were all along.
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7150,8 +7150,8 @@ MonoBehaviour:
     nextNode: 16
   - npcText: 
     playerText: My name is uhh Lilith.
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7160,8 +7160,8 @@ MonoBehaviour:
     nextNode: 17
   - npcText: Your not a cop uhh Lilith.
     playerText: 
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7170,8 +7170,8 @@ MonoBehaviour:
     nextNode: 18
   - npcText: 
     playerText: Would I make it so obvious?
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7180,8 +7180,8 @@ MonoBehaviour:
     nextNode: 19
   - npcText: 'Or are you trying to throw me off. '
     playerText: 
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7190,8 +7190,8 @@ MonoBehaviour:
     nextNode: 20
   - npcText: 
     playerText: I'm just here to play tennis. Cops despise tennis.
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7200,8 +7200,8 @@ MonoBehaviour:
     nextNode: 21
   - npcText: 'That is true. Mmmm, you won''t make it far with that racket. '
     playerText: 
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7210,8 +7210,8 @@ MonoBehaviour:
     nextNode: 22
   - npcText: 
     playerText: It was good enough for my mom.
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7220,8 +7220,8 @@ MonoBehaviour:
     nextNode: 23
   - npcText: And who is your mom?
     playerText: 
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 1
     option1Text: Be vulnerable
     option2Text: Lie
@@ -7230,8 +7230,8 @@ MonoBehaviour:
     nextNode: 0
   - npcText: 
     playerText: She was one of the tennis players apart of the HCC match.
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7240,8 +7240,8 @@ MonoBehaviour:
     nextNode: 26
   - npcText: 
     playerText: She liked collecting rackets from before tennis was banned.
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7250,8 +7250,8 @@ MonoBehaviour:
     nextNode: 27
   - npcText: I see, well us kids of tennis players must stick together.
     playerText: 
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7270,8 +7270,8 @@ MonoBehaviour:
     nextNode: 30
   - npcText: 
     playerText: Wait, your parents were tennis players?
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7281,8 +7281,8 @@ MonoBehaviour:
   - npcText: 'My dad just played a country clubs about business deals. Now he is
       a deadbeat drunk. '
     playerText: 
-    npcPortrait: {fileID: 0}
-    playerPortrait: {fileID: 0}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7291,8 +7291,8 @@ MonoBehaviour:
     nextNode: 30
   - npcText: 
     playerText: Can I ask you something?
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7301,8 +7301,8 @@ MonoBehaviour:
     nextNode: 31
   - npcText: Go for it.
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7321,8 +7321,8 @@ MonoBehaviour:
     nextNode: 33
   - npcText: 'Wow you really are a newbie, but yes there are. '
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
@@ -7363,7 +7363,7 @@ MonoBehaviour:
   - npcText: I like your fire so I'm gonna make you an offer. If you beat me I'll
       help you find the big boss and if I beat you I get a new lackey. Deal?
     playerText: 
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
     playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
     isChoiceNode: 0
     option1Text: 
@@ -7373,8 +7373,8 @@ MonoBehaviour:
     nextNode: 38
   - npcText: 
     playerText: Bring it.
-    npcPortrait: {fileID: 1043529847, guid: f1cc4d5a077c049a1b624ad82950b390, type: 3}
-    playerPortrait: {fileID: 2125523727, guid: 233f62864b22e4916b85f92b1e1590a1, type: 3}
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
     isChoiceNode: 0
     option1Text: 
     option2Text: 
