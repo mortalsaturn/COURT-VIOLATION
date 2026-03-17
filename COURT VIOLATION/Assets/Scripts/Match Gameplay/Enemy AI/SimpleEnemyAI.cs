@@ -32,7 +32,7 @@ public class SimpleEnemyAI : MonoBehaviour
         if (ballDist <= swingDistance)
         {
             Move();
-            Swing(stats.shotBaseVel);
+            Swing(stats.basicShotBaseVel);
         }
         else
         {

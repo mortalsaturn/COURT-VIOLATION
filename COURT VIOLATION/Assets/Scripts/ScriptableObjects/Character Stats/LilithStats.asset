@@ -18,6 +18,8 @@ MonoBehaviour:
   jumpForce: 150
   quickStepDistance: 3
   quickStepDuration: 0.15
-  shotBaseVel: 22.5
-  shotMaxVel: 30
   chargeRate: 5
+  basicShotBaseVel: 22.5
+  basicShotMaxVel: 30
+  lobBaseVel: 22.5
+  lobMaxVel: 30

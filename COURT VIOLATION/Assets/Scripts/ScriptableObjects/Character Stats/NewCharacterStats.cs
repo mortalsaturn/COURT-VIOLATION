@@ -18,7 +18,13 @@ public class NewCharacterStats : ScriptableObject
     public float quickStepDuration;
 
     [Header("Swinging")]
-    public float shotBaseVel;
-    public float shotMaxVel;
     public float chargeRate;
+
+    [Space(10)]
+    public float basicShotBaseVel;
+    public float basicShotMaxVel;
+
+    [Space(10)]
+    public float lobBaseVel;
+    public float lobMaxVel;
 }

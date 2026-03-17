@@ -89,13 +89,13 @@ public class Swing : MonoBehaviour
                 StopCoroutine(chargeRoutine);
                 chargeRoutine = null;
             }
-            PerformSwing(Mathf.Min(stats.shotBaseVel + addedVelocity, stats.shotMaxVel));
+            PerformSwing(Mathf.Min(stats.basicShotBaseVel + addedVelocity, stats.basicShotMaxVel));
             addedVelocity = 0;
             isCharging = false;
         }
         if (context.interaction is TapInteraction && context.started)
         {
-            PerformSwing(stats.shotBaseVel);
+            PerformSwing(stats.basicShotBaseVel);
         }
     }
 
@@ -115,10 +115,12 @@ public class Swing : MonoBehaviour
         if (basicSwinging)
         {
             BasicSwing();
+            // Debug.Log("Successful basic shot");
         }
         else if (lobbing)
         {
             Lob();
+            // Debug.Log("Successful lob");
         }
     }
 

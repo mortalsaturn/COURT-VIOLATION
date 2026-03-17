@@ -98,7 +98,7 @@ public class Ball : MonoBehaviour
                 hitboxScript.Launch(rb, hitbox.transform.forward, hitboxScript.launchVel);
                 lastHitter = hitboxScript.user;
                 predictedPoint = hitboxScript.PredictLandingPoint(rb);
-                Debug.Log("Predicted to land at: " + predictedPoint);
+                // Debug.Log("Predicted to land at: " + predictedPoint);
             }
         }
     }
@@ -129,7 +129,7 @@ public class Ball : MonoBehaviour
             bounces++;
         }
         didBounce = true;
-        Debug.Log("Bounces: " + bounces);
+        // Debug.Log("Bounces: " + bounces);
 
         if (pauseOnCollision)
         {
