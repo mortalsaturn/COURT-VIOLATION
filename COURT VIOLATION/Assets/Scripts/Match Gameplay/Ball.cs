@@ -15,7 +15,6 @@ public class Ball : MonoBehaviour
     public string lastHitter;
     public Vector3 predictedPoint;
     public Vector3 destination;
-    public bool pauseOnCollision;
     public LayerMask destinationMask;
 
     [Header("Enemy")]
@@ -124,19 +123,12 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!didBounce)
+        if (!(collision.gameObject.layer == LayerMask.NameToLayer("Ceiling")) && !didBounce)
         {
             bounces++;
+            didBounce = true;
         }
-        didBounce = true;
         // Debug.Log("Bounces: " + bounces);
-
-        if (pauseOnCollision)
-        {
-#if UNITY_EDITOR
-            EditorApplication.isPaused = true;
-#endif
-        }
     }
 
     void OnCollisionExit(Collision collision)

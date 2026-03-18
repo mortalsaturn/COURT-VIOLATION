@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,6 +31,7 @@ public class Swing : MonoBehaviour
 
     // Flags
     bool isCharging,
+        hasCharged,
         basicSwinging,
         lobbing;
     public Coroutine chargeRoutine;
@@ -84,18 +86,20 @@ public class Swing : MonoBehaviour
         }
         if (context.interaction is HoldInteraction && context.canceled)
         {
+            hasCharged = true;
             if (chargeRoutine != null)
             {
                 StopCoroutine(chargeRoutine);
                 chargeRoutine = null;
             }
-            PerformSwing(Mathf.Min(stats.basicShotBaseVel + addedVelocity, stats.basicShotMaxVel));
+            PerformSwing();
             addedVelocity = 0;
             isCharging = false;
         }
         if (context.interaction is TapInteraction && context.started)
         {
-            PerformSwing(stats.basicShotBaseVel);
+            hasCharged = false;
+            PerformSwing();
         }
     }
 
@@ -108,48 +112,54 @@ public class Swing : MonoBehaviour
         }
     }
 
-    private void PerformSwing(float velocity)
+    private void PerformSwing()
     {
-        hitbox.launchVel = velocity;
-
         if (basicSwinging)
         {
+            hitbox.shotType = ShotType.BasicShot;
+
+            hitbox.launchVel = hasCharged
+                ? Mathf.Min(stats.basicShotBaseVel + addedVelocity, stats.basicShotMaxVel)
+                : stats.basicShotBaseVel;
+
             BasicSwing();
-            // Debug.Log("Successful basic shot");
         }
         else if (lobbing)
         {
+            hitbox.shotType = ShotType.Lob;
+
+            hitbox.launchVel = hasCharged
+                ? Mathf.Min(stats.lobBaseVel + addedVelocity, stats.lobMaxVel)
+                : stats.lobBaseVel;
+
             Lob();
-            // Debug.Log("Successful lob");
         }
     }
 
     private void BasicSwing()
     {
         AnimatorStateChecker();
-        if (basicSwinging)
+        if (!basicSwinging)
         {
             animator.SetTrigger("Swing");
             animator.SetBool("isBallRight", ballInfo.destination.x >= transform.position.x);
         }
-        basicSwinging = false;
     }
 
     private void Lob()
     {
         AnimatorStateChecker();
-        if (lobbing)
+        if (!lobbing)
         {
             animator.SetTrigger("Lob");
         }
-        lobbing = false;
     }
 
     private void AnimatorStateChecker()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        basicSwinging = !stateInfo.IsName("LeftBasicSwing") && !stateInfo.IsName("RightBasicSwing");
-        lobbing = !stateInfo.IsName("Lob");
+        basicSwinging = stateInfo.IsName("LeftBasicSwing") || stateInfo.IsName("RightBasicSwing");
+        lobbing = stateInfo.IsName("Lob");
     }
 }

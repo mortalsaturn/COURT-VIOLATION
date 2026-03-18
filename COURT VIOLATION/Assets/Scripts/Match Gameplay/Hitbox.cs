@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Hitbox : MonoBehaviour
@@ -5,18 +6,10 @@ public class Hitbox : MonoBehaviour
     [SerializeField]
     NewCharacterStats stats;
     public ShotType shotType;
-    float baseVel;
     public float launchVel;
-    float maxVel;
     public Collider hitArea;
 
     public string user;
-
-    void Awake()
-    {
-        baseVel = stats.basicShotBaseVel;
-        maxVel = stats.basicShotMaxVel;
-    }
 
     void Start()
     {
@@ -73,7 +66,7 @@ public class Hitbox : MonoBehaviour
             // Check bounds
             if (xMin <= landing.x && landing.x <= xMax && zMin <= landing.z && landing.z <= zMax)
             {
-                // Debug.Log($"Valid landing found after {i} iterations at {landing}");
+                Debug.Log($"Valid landing found after {i} iterations at {landing}");
                 return;
             }
 
