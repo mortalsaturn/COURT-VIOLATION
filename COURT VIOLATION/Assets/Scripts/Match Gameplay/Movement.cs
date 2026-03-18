@@ -49,7 +49,10 @@ public class Movement : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        rb.AddForce(transform.up * jumpForce);
+        if (context.performed)
+        {
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     public void OnSprint(InputAction.CallbackContext context)
@@ -84,7 +87,12 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(rb.linearVelocity.y);
         Move();
+        if (rb.linearVelocity.y < 0f)
+        {
+            rb.AddForce(Vector3.down * 1.5f);
+        }
     }
 
     private void Move()
