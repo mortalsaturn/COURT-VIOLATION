@@ -33,7 +33,8 @@ public class Swing : MonoBehaviour
     bool isCharging,
         hasCharged,
         basicSwinging,
-        lobbing;
+        lobbing,
+        dropShotting;
     public Coroutine chargeRoutine;
 
     void Awake()
@@ -71,6 +72,12 @@ public class Swing : MonoBehaviour
     public void OnLob(InputAction.CallbackContext context)
     {
         lobbing = true;
+        ChargeAndSwing(context);
+    }
+
+    public void OnDropShot(InputAction.CallbackContext context)
+    {
+        dropShotting = true;
         ChargeAndSwing(context);
     }
 
@@ -134,6 +141,16 @@ public class Swing : MonoBehaviour
 
             Lob();
         }
+        else if (dropShotting)
+        {
+            hitbox.shotType = ShotType.DropShot;
+
+            hitbox.launchVel = hasCharged
+                ? Mathf.Min(stats.dropShotBaseVel + addedVelocity, stats.dropShotMaxVel)
+                : stats.dropShotBaseVel;
+
+            DropShot();
+        }
     }
 
     private void BasicSwing()
@@ -155,11 +172,21 @@ public class Swing : MonoBehaviour
         }
     }
 
+    private void DropShot()
+    {
+        AnimatorStateChecker();
+        if (!dropShotting)
+        {
+            animator.SetTrigger("DropShot");
+        }
+    }
+
     private void AnimatorStateChecker()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         basicSwinging = stateInfo.IsName("LeftBasicSwing") || stateInfo.IsName("RightBasicSwing");
         lobbing = stateInfo.IsName("Lob");
+        dropShotting = stateInfo.IsName("DropShot");
     }
 }

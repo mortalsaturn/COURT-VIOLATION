@@ -5,6 +5,7 @@ public enum ShotType
 {
     BasicShot,
     Lob,
+    DropShot,
 }
 
 public class ShotData

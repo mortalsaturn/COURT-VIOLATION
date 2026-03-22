@@ -34,6 +34,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "56d820de-7b29-4148-89ea-b2f0449c49f7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Basic Swing",
                     "type": "Button",
                     "id": "c7134705-d1ed-4d64-94e1-e2d554b01195",
@@ -52,12 +61,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
+                    "name": "Drop Shot",
                     "type": "Button",
-                    "id": "56d820de-7b29-4148-89ea-b2f0449c49f7",
+                    "id": "896d0af4-c853-4908-9ae6-8a8da127325a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold,Tap",
                     "initialStateCheck": false
                 }
             ],
@@ -213,6 +222,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Lob",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73aa0d91-7440-4343-bea6-ecb026ed77f0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop Shot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

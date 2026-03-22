@@ -23,3 +23,5 @@ MonoBehaviour:
   basicShotMaxVel: 30
   lobBaseVel: 22.5
   lobMaxVel: 30
+  dropShotBaseVel: 15
+  dropShotMaxVel: 20

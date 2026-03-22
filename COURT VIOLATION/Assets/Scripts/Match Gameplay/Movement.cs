@@ -87,7 +87,6 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(rb.linearVelocity.y);
         Move();
         if (rb.linearVelocity.y < 0f)
         {
