@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Hitbox : MonoBehaviour
@@ -5,18 +6,10 @@ public class Hitbox : MonoBehaviour
     [SerializeField]
     NewCharacterStats stats;
     public ShotType shotType;
-    float baseVel;
     public float launchVel;
-    float maxVel;
     public Collider hitArea;
 
     public string user;
-
-    void Awake()
-    {
-        baseVel = stats.shotBaseVel;
-        maxVel = stats.shotMaxVel;
-    }
 
     void Start()
     {
@@ -68,6 +61,8 @@ public class Hitbox : MonoBehaviour
         {
             Vector3 landing = PredictLandingPoint(rb);
 
+            int distanceSign = 0;
+
             // Check bounds
             if (xMin <= landing.x && landing.x <= xMax && zMin <= landing.z && landing.z <= zMax)
             {
@@ -75,11 +70,18 @@ public class Hitbox : MonoBehaviour
                 return;
             }
 
-            // Adjust pitch (up/down) based on Z distance (forward axis)
             if (landing.z < zMin)
-                hitbox.Rotate(Vector3.right, -pitchStep, Space.Self); // tilt up (increase range)
+                distanceSign = -1;
             else if (landing.z > zMax)
-                hitbox.Rotate(Vector3.right, pitchStep, Space.Self); // tilt down (reduce range)
+                distanceSign = 1;
+
+            if (distanceSign != 0)
+            {
+                int shotSign = (shotType == ShotType.Lob) ? -1 : 1;
+                float rotationAmount = distanceSign * shotSign * pitchStep;
+
+                hitbox.Rotate(Vector3.right, rotationAmount, Space.Self);
+            }
 
             // Adjust yaw (left/right) based on X distance
             if (landing.x < xMin)

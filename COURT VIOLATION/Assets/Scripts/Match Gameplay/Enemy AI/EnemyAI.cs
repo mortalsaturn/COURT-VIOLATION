@@ -114,7 +114,7 @@ public class EnemyAI : MonoBehaviour
 
     public NodeState OnSwing()
     {
-        float vel = Mathf.Min(stats.shotBaseVel + addedVelocity, stats.shotMaxVel);
+        float vel = Mathf.Min(stats.basicShotBaseVel + addedVelocity, stats.basicShotMaxVel);
         NodeState result = Swing(vel);
 
         // If swing finished, clear charge state

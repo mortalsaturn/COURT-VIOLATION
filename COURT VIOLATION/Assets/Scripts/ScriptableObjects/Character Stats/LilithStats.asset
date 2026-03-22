@@ -15,9 +15,11 @@ MonoBehaviour:
   characterName: Lilith
   baseSpeed: 5
   sprintModifier: 1.5
-  jumpForce: 150
+  jumpForce: 10
   quickStepDistance: 3
   quickStepDuration: 0.15
-  shotBaseVel: 22.5
-  shotMaxVel: 30
   chargeRate: 5
+  basicShotBaseVel: 22.5
+  basicShotMaxVel: 30
+  lobBaseVel: 22.5
+  lobMaxVel: 30
