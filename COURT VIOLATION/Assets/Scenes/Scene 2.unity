@@ -8108,6 +8108,48 @@ MonoBehaviour:
     nextNodeForOption1: 0
     nextNodeForOption2: 0
     nextNode: 5
+  - npcText: If i were you i would let me do the all the talking from here.
+    playerText: 'Why? '
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 5
+  - npcText: "My floor, Tra\xEEtrise is real laidback compared to H\xE9r\xE9si. To
+      keep the law off our back we have a front for the tennis. For mine it is a
+      rock club, for here its a monster car show."
+    playerText: So this is how you guys stayed off our radar.
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
+    isChoiceNode: 0
+    option1Text: 
+    option2Text: 
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 5
+  - npcText: Our?
+    playerText: 
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
+    isChoiceNode: 1
+    option1Text: 
+    option2Text: Our as in the people from the  Shallow.
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 5
+  - npcText: Our?
+    playerText: 
+    npcPortrait: {fileID: 2135706243, guid: f34b813c676404df6bf0beb96fa29f6e, type: 3}
+    playerPortrait: {fileID: 2135055865, guid: b2e8d5cf01a9a45a9a47b5aff3b26775, type: 3}
+    isChoiceNode: 1
+    option1Text: 
+    option2Text: Our as in the people from the  Shallow.
+    nextNodeForOption1: 0
+    nextNodeForOption2: 0
+    nextNode: 5
   typingSpeed: 0.07
 --- !u!4 &521158539
 Transform:
