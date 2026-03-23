@@ -2738,6 +2738,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &424825375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4000993606194891873, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+  m_PrefabInstance: {fileID: 1056535812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &424825377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424825375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab86d6f7cf5604cf7857accdabfcc393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &432045952
 GameObject:
   m_ObjectHideFlags: 0
@@ -6627,6 +6644,10 @@ PrefabInstance:
       propertyPath: jumpForce
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 2757632514696099311, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3043808710142390867, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
       propertyPath: stats
       value: 
@@ -6866,7 +6887,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4000993606194891873, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 424825377}
   m_SourcePrefab: {fileID: 100100000, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
 --- !u!1 &1063814705
 GameObject:
