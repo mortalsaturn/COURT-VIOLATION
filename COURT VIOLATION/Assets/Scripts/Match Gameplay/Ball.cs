@@ -87,12 +87,11 @@ public class Ball : MonoBehaviour
 
             if (lastHitter != hitboxScript.user)
             {
-                float xMin = hitboxScript.hitArea.bounds.min.x;
-                float xMax = hitboxScript.hitArea.bounds.max.x;
-                float zMin = hitboxScript.hitArea.bounds.min.z;
-                float zMax = hitboxScript.hitArea.bounds.max.z;
-
-                hitboxScript.AdjustLaunchAngle(rb, hitbox.transform, xMin, xMax, zMin, zMax);
+                hitboxScript.AdjustLaunchAngle(
+                    rb,
+                    hitbox.transform,
+                    hitboxScript.SetActiveHitArea()
+                );
 
                 hitboxScript.Launch(rb, hitbox.transform.forward, hitboxScript.launchVel);
                 lastHitter = hitboxScript.user;

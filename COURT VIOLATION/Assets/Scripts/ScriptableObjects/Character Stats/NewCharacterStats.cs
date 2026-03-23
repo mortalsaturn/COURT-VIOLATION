@@ -27,4 +27,8 @@ public class NewCharacterStats : ScriptableObject
     [Space(10)]
     public float lobBaseVel;
     public float lobMaxVel;
+
+    [Space(10)]
+    public float dropShotBaseVel;
+    public float dropShotMaxVel;
 }

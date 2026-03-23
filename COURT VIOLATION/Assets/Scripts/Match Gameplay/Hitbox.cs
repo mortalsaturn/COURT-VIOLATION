@@ -1,4 +1,4 @@
-using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Hitbox : MonoBehaviour
@@ -7,16 +7,31 @@ public class Hitbox : MonoBehaviour
     NewCharacterStats stats;
     public ShotType shotType;
     public float launchVel;
-    public Collider hitArea;
+    public List<Collider> hitAreas;
 
     public string user;
 
-    void Start()
+    void Awake()
     {
         user = transform.root.gameObject.name;
     }
 
     void Update() { }
+
+    public Collider SetActiveHitArea()
+    {
+        switch (shotType)
+        {
+            case ShotType.BasicShot:
+                return hitAreas[0];
+            case ShotType.Lob:
+                return hitAreas[1];
+            case ShotType.DropShot:
+                return hitAreas[2];
+            default:
+                return hitAreas[0];
+        }
+    }
 
     public void Launch(Rigidbody rigidbody, Vector3 launchAngle, float launchVel)
     {
@@ -48,15 +63,17 @@ public class Hitbox : MonoBehaviour
     public void AdjustLaunchAngle(
         Rigidbody rb,
         Transform hitbox,
-        float xMin,
-        float xMax,
-        float zMin,
-        float zMax,
+        Collider hitArea,
         float pitchStep = 1f,
         float yawStep = 1f,
         int maxIterations = 90
     )
     {
+        float xMin = hitArea.bounds.min.x;
+        float xMax = hitArea.bounds.max.x;
+        float zMin = hitArea.bounds.min.z;
+        float zMax = hitArea.bounds.max.z;
+
         for (int i = 0; i < maxIterations; i++)
         {
             Vector3 landing = PredictLandingPoint(rb);
