@@ -48,6 +48,8 @@ public class Movement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector2>();
+        animator.SetFloat("xInput", moveDirection.x);
+        animator.SetFloat("yInput", moveDirection.y);
     }
 
     public void OnJump(InputAction.CallbackContext context)
