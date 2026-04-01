@@ -339,7 +339,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lilith_Spritesheet_11
+      name: Lilith_Lob_Swing
       rect:
         serializedVersion: 2
         x: 1385
@@ -472,6 +472,7 @@ TextureImporter:
       Lilith_Idle_Front: 105513607
       Lilith_Jump: -759864681
       Lilith_Lob_Charge: -1426940230
+      Lilith_Lob_Swing: -1204438106
       Lilith_Move_Down: 2084804538
       Lilith_Move_Left: 1913239194
       Lilith_Move_Right: 1552054698
@@ -479,7 +480,6 @@ TextureImporter:
       Lilith_Serve_Stance: 1329445747
       Lilith_Serve_Throw: 2120971065
       Lilith_Smash: -1797806629
-      Lilith_Spritesheet_11: -1204438106
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

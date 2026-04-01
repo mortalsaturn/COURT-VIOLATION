@@ -6856,6 +6856,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.52
       objectReference: {fileID: 0}
+    - target: {fileID: 7080666438996763549, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7309721668183771872, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -6898,6 +6902,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8042419437391526548, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790951491961227412, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
+      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8790951491961227412, guid: 3079a36d95730a64b96ba9b80d00309a, type: 3}
