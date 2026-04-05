@@ -2,6 +2,7 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueNode
 {
+    
     [Header("Portraits")]
     public Sprite npcPortrait;
     public Sprite playerPortrait;
@@ -29,4 +30,6 @@ public class DialogueData : MonoBehaviour
     {
         return index >= 0 && index < nodes.Length;
     }
+    
 }
+

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-   public DialogueManager dialogueManager;
+   public DialogueManager DialogueManager;
+   public CameraManager cameraManager;
     public GameObject promptUI;
     public float triggerDistance = 2.5f;
 
@@ -52,11 +53,11 @@ public class DialogueTrigger : MonoBehaviour
             controller.enabled = false;
 
         // Switch camera
-        if (dialogueManager != null && dialogueManager.cameraManager != null)
-            dialogueManager.cameraManager.SetCamera(CameraManager.CamState.PLAYER);
+        if (cameraManager != null && cameraManager != null)
+            cameraManager.SetCamera(CameraManager.CamState.PLAYER);
 
         // Start the dialogue
-        dialogueManager.StartDialogue();
+        DialogueManager.StartDialogue();
     }
 
    
