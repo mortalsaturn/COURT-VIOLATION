@@ -4,6 +4,7 @@ using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Renderer))]
 public class Movement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Movement : MonoBehaviour
     float quickStepDistance,
         quickStepDuration;
     float jumpForce;
+    private Animator animator;
     Renderer rend;
     Color baseColor;
     private Vector3 moveDirection;
@@ -26,6 +28,7 @@ public class Movement : MonoBehaviour
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         rend = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody>();
 
@@ -45,6 +48,8 @@ public class Movement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector2>();
+        animator.SetFloat("xInput", moveDirection.x);
+        animator.SetFloat("yInput", moveDirection.y);
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -91,6 +96,14 @@ public class Movement : MonoBehaviour
         if (rb.linearVelocity.y < 0f)
         {
             rb.AddForce(Vector3.down * 1.5f);
+        }
+        if (moveDirection == Vector3.zero)
+        {
+            animator.SetBool("isMoving", false);
+        }
+        else
+        {
+            animator.SetBool("isMoving", true);
         }
     }
 
