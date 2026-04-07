@@ -9,7 +9,7 @@ using UnityEditor;
 public class Ball : MonoBehaviour
 {
     Rigidbody rb;
-    float bounces = 0f;
+    public float bounces = 0f;
     bool didBounce = false;
     public Transform spawn;
     public string lastHitter;
@@ -35,6 +35,7 @@ public class Ball : MonoBehaviour
         if (bounces >= 2f)
         {
             bounces = 0;
+
             didBounce = false;
             ResetBall();
         }
@@ -127,7 +128,6 @@ public class Ball : MonoBehaviour
             bounces++;
             didBounce = true;
         }
-        // Debug.Log("Bounces: " + bounces);
     }
 
     void OnCollisionExit(Collision collision)
