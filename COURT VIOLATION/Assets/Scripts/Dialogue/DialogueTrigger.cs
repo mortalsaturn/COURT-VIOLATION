@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
@@ -6,6 +7,9 @@ public class DialogueTrigger : MonoBehaviour
    public CameraManager cameraManager;
     public GameObject promptUI;
     public float triggerDistance = 2.5f;
+    private float timer = 0f;
+    public float delayBeforePrompt = 3f;
+    private bool canShowPrompt = false;
 
     private Transform player;
     private bool isInDialogue = false;
@@ -29,34 +33,48 @@ public class DialogueTrigger : MonoBehaviour
 
         if (dist <= triggerDistance)
         {
-            promptUI.SetActive(true);
+            timer += Time.deltaTime;
 
-            if (Input.GetKeyDown(KeyCode.T))
+            // Wait 3 seconds before showing prompt
+            if (timer >= delayBeforePrompt)
             {
-                isInDialogue = true;    
-                StartDialogue();
+                canShowPrompt = true;
+            }
+
+            if (canShowPrompt)
+            {
+                promptUI.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    isInDialogue = true;
+                    StartDialogue();
+                }
             }
         }
         else
         {
+            // Reset everything when player leaves
             promptUI.SetActive(false);
-        }
+            timer = 0f;
+            canShowPrompt = false;
+        }   
     }
 
     void StartDialogue()
     {
-        promptUI.SetActive(false);
+       promptUI.SetActive(false);
 
         // Lock player movement
         PlayerMovement controller = player.GetComponent<PlayerMovement>();
         if (controller != null)
             controller.enabled = false;
 
-        // Switch camera
-        if (cameraManager != null && cameraManager != null)
-            cameraManager.SetCamera(CameraManager.CamState.PLAYER);
+        //switch to NPC camera
+        if (cameraManager != null)
+            cameraManager.SetCamera(CameraManager.CamState.NPC);
 
-        // Start the dialogue
+        // start dialogue
         DialogueManager.StartDialogue();
     }
 

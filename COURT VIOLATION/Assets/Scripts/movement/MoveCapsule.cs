@@ -5,33 +5,57 @@ public class MoveCapsule : MonoBehaviour
     public Transform target;
     public float moveDuration = 3f;
 
+    public CameraManager cameraManager; 
+
     private Vector3 startPosition;
     private float speed;
-    private bool hasReachedTarget = false; // track if movement is done
+    private bool hasReachedTarget = false;
+    private Transform player;
+    private Animator animator;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         startPosition = transform.position;
 
         float distance = Vector3.Distance(startPosition, target.position);
-        speed = distance / moveDuration; // calculate speed
+        speed = distance / moveDuration;
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (target != null && !hasReachedTarget)
         {
-            // Move the capsule toward the target
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 target.position,
                 speed * Time.deltaTime
             );
 
-            // Check if capsule has reached the target
-            if (transform.position.z == target.position.z)
+            if (animator != null)
             {
-                hasReachedTarget = true; // stop moving
+                animator.SetBool("isrunning", true);
+            }
+
+            if (Vector3.Distance(transform.position, target.position) < 0.01f)
+            {
+                hasReachedTarget = true;
+
+                if (animator != null)
+                {
+                    animator.SetBool("isrunning", false);
+                }
+
+                // camera switch
+                if (cameraManager != null)
+                {
+                    cameraManager.SetCamera(CameraManager.CamState.PLAYER);
+                    player.transform.Rotate(0f, -90f, 0f);
+                }
+
                 Debug.Log("Capsule has reached the target!");
             }
         }

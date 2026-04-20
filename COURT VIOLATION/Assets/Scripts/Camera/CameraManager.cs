@@ -6,6 +6,7 @@ public class CameraManager : MonoBehaviour
     public Camera npcCamera;
     public Camera playerCamera;
     public Camera sceneCamera;
+    
 
     public enum CamState { NPC, PLAYER, SCENE }
 
