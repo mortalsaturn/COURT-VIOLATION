@@ -8,8 +8,10 @@ using UnityEditor;
 [RequireComponent(typeof(Rigidbody))]
 public class Ball : MonoBehaviour
 {
+    public delegate void PointEnded(string lastHitter);
+    public event PointEnded OnPointEnded;
     Rigidbody rb;
-    public float bounces = 0f;
+    public int bounces = 0;
     bool didBounce = false;
     public Transform spawn;
     public string lastHitter;
@@ -22,31 +24,28 @@ public class Ball : MonoBehaviour
     public bool inEnemyHitRange;
     public bool inEnemyWalkRange;
     public bool isApproachingEnemy;
+    private bool pointOver;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        OnPointEnded += (unused) => ResetBall();
     }
 
     void Update()
     {
         FindDirection();
         DrawTrajectory(rb);
-        if (bounces >= 2f)
-        {
-            bounces = 0;
-
-            didBounce = false;
-            ResetBall();
-        }
     }
 
     void ResetBall()
     {
+        bounces = 0;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         lastHitter = "";
         transform.position = spawn.position;
+        pointOver = false;
     }
 
     public void FindDirection()
@@ -111,7 +110,7 @@ public class Ball : MonoBehaviour
     {
         if (trigger.gameObject.layer == LayerMask.NameToLayer("Hitbox"))
         {
-            bounces = 0f;
+            bounces = 0;
             didBounce = false;
         }
 
@@ -125,7 +124,7 @@ public class Ball : MonoBehaviour
     {
         if (!(collision.gameObject.layer == LayerMask.NameToLayer("Ceiling")) && !didBounce)
         {
-            bounces++;
+            Bounce(lastHitter);
             didBounce = true;
         }
     }
@@ -133,6 +132,18 @@ public class Ball : MonoBehaviour
     void OnCollisionExit(Collision collision)
     {
         didBounce = false;
+    }
+
+    void Bounce(string hitter)
+    {
+        bounces++;
+
+        if (bounces == 2 && !pointOver)
+        {
+            pointOver = true;
+
+            OnPointEnded?.Invoke(hitter);
+        }
     }
 
     void DrawTrajectory(Rigidbody rb, int steps = 30, float stepTime = 0.1f)

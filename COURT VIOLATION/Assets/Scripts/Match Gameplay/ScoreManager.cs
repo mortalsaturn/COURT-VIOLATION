@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -7,11 +8,20 @@ public class ScoreManager : MonoBehaviour
     public int score;
     public Ball ball;
 
-    void Update()
+    void Start()
     {
-        if (ball.bounces == 2)
+        ball.OnPointEnded += HandlePointEnded;
+    }
+
+    void HandlePointEnded(string lastHitter)
+    {
+        if (lastHitter == "Player")
         {
             UpdateScore();
+        }
+        else
+        {
+            Debug.Log("Enemy Scored");
         }
     }
 
