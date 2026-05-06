@@ -1,17 +1,32 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    public const string setsText = "Sets: ";
     public TextMeshProUGUI scoreTMP;
+    public TextMeshProUGUI setsTMP;
+
     public int score;
+    public int sets;
     public Ball ball;
 
-    void Update()
+    void Start()
     {
-        if (ball.bounces == 2)
+        ball.OnPointEnded += HandlePointEnded;
+        setsTMP.text = $"{setsText}{sets}";
+    }
+
+    void HandlePointEnded(string lastHitter)
+    {
+        if (lastHitter == "Player")
         {
             UpdateScore();
+        }
+        else
+        {
+            Debug.Log("Enemy Scored");
         }
     }
 
@@ -27,9 +42,17 @@ public class ScoreManager : MonoBehaviour
         }
         else if (score >= 40)
         {
+            UpdateSet();
             score = 0;
         }
 
         scoreTMP.text = score.ToString();
+    }
+
+    public void UpdateSet()
+    {
+        sets++;
+
+        setsTMP.text = $"{setsText}{sets}";
     }
 }

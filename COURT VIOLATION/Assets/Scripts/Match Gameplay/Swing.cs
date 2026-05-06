@@ -5,6 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.Rendering;
+
+public enum ServingState
+{
+    Serving,
+    Playing,
+}
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Renderer))]
@@ -20,7 +27,7 @@ public class Swing : MonoBehaviour
 
     // Other GameObjects' components
     Hitbox hitbox;
-    Ball ballInfo;
+    public Ball ball;
 
     // Debugging Properties
     Color baseColor;
@@ -32,10 +39,13 @@ public class Swing : MonoBehaviour
     // Flags
     bool isCharging,
         hasCharged,
+        serving,
         basicSwinging,
         lobbing,
         dropShotting;
     public Coroutine chargeRoutine;
+    public ServingState servingState;
+    public Transform ballServeSpawn;
 
     void Awake()
     {
@@ -46,8 +56,12 @@ public class Swing : MonoBehaviour
     void Start()
     {
         baseColor = rend.material.color;
+        if (servingState == ServingState.Serving)
+        {
+            animator.SetBool("isServing", true);
+        }
 
-        ballInfo = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
+        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
         hitbox = GetComponentInChildren<Hitbox>();
     }
 
@@ -119,37 +133,55 @@ public class Swing : MonoBehaviour
         }
     }
 
+    private IEnumerator ApplyServeForce()
+    {
+        yield return null; // Wait one frame for physics to update
+        ball.rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+    }
+
     private void PerformSwing()
     {
-        if (basicSwinging)
+        if (servingState == ServingState.Serving)
         {
-            hitbox.shotType = ShotType.BasicShot;
-
-            hitbox.launchVel = hasCharged
-                ? Mathf.Min(stats.basicShotBaseVel + addedVelocity, stats.basicShotMaxVel)
-                : stats.basicShotBaseVel;
-
-            BasicSwing();
+            if (!ball.gameObject.activeInHierarchy)
+            {
+                ball.gameObject.SetActive(true);
+            }
+            ball.transform.position = ballServeSpawn.position;
+            StartCoroutine(ApplyServeForce());
         }
-        else if (lobbing)
+        else
         {
-            hitbox.shotType = ShotType.Lob;
+            if (basicSwinging)
+            {
+                hitbox.shotType = ShotType.BasicShot;
 
-            hitbox.launchVel = hasCharged
-                ? Mathf.Min(stats.lobBaseVel + addedVelocity, stats.lobMaxVel)
-                : stats.lobBaseVel;
+                hitbox.launchVel = hasCharged
+                    ? Mathf.Min(stats.basicShotBaseVel + addedVelocity, stats.basicShotMaxVel)
+                    : stats.basicShotBaseVel;
 
-            Lob();
-        }
-        else if (dropShotting)
-        {
-            hitbox.shotType = ShotType.DropShot;
+                BasicSwing();
+            }
+            else if (lobbing)
+            {
+                hitbox.shotType = ShotType.Lob;
 
-            hitbox.launchVel = hasCharged
-                ? Mathf.Min(stats.dropShotBaseVel + addedVelocity, stats.dropShotMaxVel)
-                : stats.dropShotBaseVel;
+                hitbox.launchVel = hasCharged
+                    ? Mathf.Min(stats.lobBaseVel + addedVelocity, stats.lobMaxVel)
+                    : stats.lobBaseVel;
 
-            DropShot();
+                Lob();
+            }
+            else if (dropShotting)
+            {
+                hitbox.shotType = ShotType.DropShot;
+
+                hitbox.launchVel = hasCharged
+                    ? Mathf.Min(stats.dropShotBaseVel + addedVelocity, stats.dropShotMaxVel)
+                    : stats.dropShotBaseVel;
+
+                DropShot();
+            }
         }
     }
 
@@ -159,7 +191,7 @@ public class Swing : MonoBehaviour
         if (!basicSwinging)
         {
             animator.SetTrigger("Swing");
-            animator.SetBool("isBallRight", ballInfo.destination.x >= transform.position.x);
+            animator.SetBool("isBallRight", ball.destination.x >= transform.position.x);
         }
     }
 
@@ -185,6 +217,7 @@ public class Swing : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
+        serving = stateInfo.IsName("ServeStance");
         basicSwinging = stateInfo.IsName("LeftBasicSwing") || stateInfo.IsName("RightBasicSwing");
         lobbing = stateInfo.IsName("Lob");
         dropShotting = stateInfo.IsName("DropShot");
