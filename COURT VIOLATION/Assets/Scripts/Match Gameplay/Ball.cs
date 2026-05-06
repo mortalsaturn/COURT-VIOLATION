@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
 {
     public delegate void PointEnded(string lastHitter);
     public event PointEnded OnPointEnded;
-    Rigidbody rb;
+    public Rigidbody rb;
     public int bounces = 0;
     bool didBounce = false;
     public Transform spawn;

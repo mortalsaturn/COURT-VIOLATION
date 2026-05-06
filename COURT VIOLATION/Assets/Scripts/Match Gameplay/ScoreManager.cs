@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    public const string setsText = "Sets: ";
     public TextMeshProUGUI scoreTMP;
+    public TextMeshProUGUI setsTMP;
+
     public int score;
+    public int sets;
     public Ball ball;
 
     void Start()
     {
         ball.OnPointEnded += HandlePointEnded;
+        setsTMP.text = $"{setsText}{sets}";
     }
 
     void HandlePointEnded(string lastHitter)
@@ -37,9 +42,17 @@ public class ScoreManager : MonoBehaviour
         }
         else if (score >= 40)
         {
+            UpdateSet();
             score = 0;
         }
 
         scoreTMP.text = score.ToString();
+    }
+
+    public void UpdateSet()
+    {
+        sets++;
+
+        setsTMP.text = $"{setsText}{sets}";
     }
 }
