@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     float quickStepDistance,
         quickStepDuration;
     float jumpForce;
-    private Animator animator;
+    public Animator animator;
     Renderer rend;
     Color baseColor;
     private Vector3 moveDirection;
