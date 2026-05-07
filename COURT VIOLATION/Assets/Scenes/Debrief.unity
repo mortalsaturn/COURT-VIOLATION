@@ -1896,7 +1896,6 @@ GameObject:
   - component: {fileID: 492150419}
   - component: {fileID: 492150418}
   - component: {fileID: 492150417}
-  - component: {fileID: 492150421}
   - component: {fileID: 492150416}
   - component: {fileID: 492150420}
   - component: {fileID: 492150422}
@@ -2029,19 +2028,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!114 &492150421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492150415}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94a0038df812454f820807ae9dc7b3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
 --- !u!114 &492150422
 MonoBehaviour:
   m_ObjectHideFlags: 0
