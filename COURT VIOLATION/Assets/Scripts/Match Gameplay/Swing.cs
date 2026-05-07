@@ -22,7 +22,7 @@ public class Swing : MonoBehaviour
     private NewCharacterStats stats;
 
     // Components
-    Animator animator;
+    public Animator animator;
     Renderer rend;
 
     // Other GameObjects' components
@@ -35,17 +35,20 @@ public class Swing : MonoBehaviour
     // Stats
     float chargeRate;
     float addedVelocity;
+    private bool servingStance;
 
     // Flags
     bool isCharging,
         hasCharged,
-        serving,
+        serveThrowing,
         basicSwinging,
         lobbing,
         dropShotting;
+    private bool smashing;
     public Coroutine chargeRoutine;
     public ServingState servingState;
     public Transform ballServeSpawn;
+    public bool isBallAirborne;
 
     void Awake()
     {
@@ -61,7 +64,6 @@ public class Swing : MonoBehaviour
             animator.SetBool("isServing", true);
         }
 
-        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
         hitbox = GetComponentInChildren<Hitbox>();
     }
 
@@ -137,18 +139,21 @@ public class Swing : MonoBehaviour
     {
         yield return null; // Wait one frame for physics to update
         ball.rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+        isBallAirborne = true;
     }
 
     private void PerformSwing()
     {
         if (servingState == ServingState.Serving)
         {
-            if (!ball.gameObject.activeInHierarchy)
+            if (!isBallAirborne)
             {
-                ball.gameObject.SetActive(true);
+                ServeThrow();
             }
-            ball.transform.position = ballServeSpawn.position;
-            StartCoroutine(ApplyServeForce());
+            else
+            {
+                Smash();
+            }
         }
         else
         {
@@ -185,6 +190,30 @@ public class Swing : MonoBehaviour
         }
     }
 
+    private void Smash()
+    {
+        AnimatorStateChecker();
+        if (!smashing)
+        {
+            animator.SetTrigger("Smash");
+        }
+    }
+
+    private void ServeThrow()
+    {
+        AnimatorStateChecker();
+        if (!serveThrowing)
+        {
+            animator.SetBool("isServeThrowing", true);
+        }
+        if (!ball.gameObject.activeInHierarchy)
+        {
+            ball.gameObject.SetActive(true);
+        }
+        ball.transform.position = ballServeSpawn.position;
+        StartCoroutine(ApplyServeForce());
+    }
+
     private void BasicSwing()
     {
         AnimatorStateChecker();
@@ -217,9 +246,11 @@ public class Swing : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        serving = stateInfo.IsName("ServeStance");
+        servingStance = stateInfo.IsName("ServeStance");
+        serveThrowing = stateInfo.IsName("ServeThrow");
         basicSwinging = stateInfo.IsName("LeftBasicSwing") || stateInfo.IsName("RightBasicSwing");
         lobbing = stateInfo.IsName("Lob");
         dropShotting = stateInfo.IsName("DropShot");
+        smashing = stateInfo.IsName("Smash");
     }
 }
