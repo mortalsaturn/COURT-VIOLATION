@@ -82,7 +82,7 @@ public class ScoreManager : MonoBehaviour
         {
             playerSets++;
             playerSetsTMP.text = $"{setsText}{playerSets}";
-            if (playerSets == 2)
+            if (playerSets == 1)
             {
                 playerWinTMP.gameObject.SetActive(true);
                 sceneLoader.DialogueScene3();
@@ -92,7 +92,7 @@ public class ScoreManager : MonoBehaviour
         {
             enemySets++;
             enemySetsTMP.text = $"{setsText}{enemySets}";
-            if (enemySets == 2)
+            if (enemySets == 1)
             {
                 enemyWinTMP.gameObject.SetActive(true);
                 sceneLoader.DialogueScene3();
