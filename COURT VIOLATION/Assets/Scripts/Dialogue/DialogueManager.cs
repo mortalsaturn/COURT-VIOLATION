@@ -22,25 +22,28 @@ public class DialogueManager : MonoBehaviour
 
     private int currentNodeIndex;
     private bool isTyping;
+    private bool isWaitingForChoice = false;
     private Coroutine typingRoutine;
 
-    // ✅ NEW: Dialogue phases
     enum DialoguePhase { NONE, NPC, PLAYER }
     private DialoguePhase currentPhase;
     private DialogueNode currentNode;
 
-    // =========================
-    // START
-    // =========================
+    void Start()
+    {
+        ui.option1Button.onClick.AddListener(() => ChooseOption(1));
+        ui.option2Button.onClick.AddListener(() => ChooseOption(2));
+
+        ui.HideChoices();
+    }
+
     public void StartDialogue()
     {
         currentNodeIndex = 0;
         DisplayNode();
     }
 
-    // =========================
     // DISPLAY NODE
-    // =========================
     void DisplayNode()
     {
         if (!dialogueData.IsValidNode(currentNodeIndex))
@@ -52,59 +55,60 @@ public class DialogueManager : MonoBehaviour
         currentNode = dialogueData.GetNode(currentNodeIndex);
 
         StopTyping();
+
         ui.HideChoices();
         textBubbleUI.HideAll();
 
-        // Decide who talks first
-        if (!string.IsNullOrEmpty(currentNode.npcText))
+        typingRoutine = StartCoroutine(TypeDialogue(currentNode));
+    }
+
+    IEnumerator TypeDialogue(DialogueNode node)
+    {
+        isTyping = true;
+
+        // NPC
+        if (!string.IsNullOrEmpty(node.npcText))
         {
             currentPhase = DialoguePhase.NPC;
-            typingRoutine = StartCoroutine(TypeNPC());
+
+            cameraManager?.SetCamera(CameraManager.CamState.NPC);
+
+            textBubbleUI.ShowNPCBubble(node.npcID);
+            portraitUI.ShowNPC(node.npcID, node.npcPortrait);
+
+            TMP_Text npcBox = ui.GetNPCTextBox(node.npcID);
+            if (npcBox != null)
+                yield return TypeText(node.npcText, npcBox);
         }
-        else if (!string.IsNullOrEmpty(currentNode.playerText))
+
+        // PLAYER
+        if (!string.IsNullOrEmpty(node.playerText))
         {
             currentPhase = DialoguePhase.PLAYER;
-            typingRoutine = StartCoroutine(TypePlayer());
+
+            cameraManager?.SetCamera(CameraManager.CamState.PLAYER);
+
+            textBubbleUI.ShowPlayerBubble();
+            portraitUI.ShowPlayer(node.playerPortrait);
+
+            yield return TypeText(node.playerText, ui.playerTextBox);
+        }
+
+        isTyping = false;
+
+        Debug.Log("NODE FINISHED");
+
+        // SHOW CHOICES
+        if (node.isChoiceNode)
+        {
+            Debug.Log("SHOWING CHOICES");
+
+            isWaitingForChoice = true;
+            ui.ShowChoices(node);
         }
     }
 
-    // =========================
-    // NPC TYPE
-    // =========================
-    IEnumerator TypeNPC()
-    {
-        isTyping = true;
-
-        cameraManager?.SetCamera(CameraManager.CamState.NPC);
-
-        textBubbleUI.ShowNPCBubble(currentNode.npcID);
-        portraitUI.ShowNPC(currentNode.npcID, currentNode.npcPortrait);
-
-        yield return TypeText(currentNode.npcText, ui.npcTextBox);
-
-        isTyping = false;
-    }
-
-    // =========================
-    // PLAYER TYPE
-    // =========================
-    IEnumerator TypePlayer()
-    {
-        isTyping = true;
-
-        cameraManager?.SetCamera(CameraManager.CamState.PLAYER);
-
-        textBubbleUI.ShowPlayerBubble();
-        portraitUI.ShowPlayer(currentNode.playerPortrait);
-
-        yield return TypeText(currentNode.playerText, ui.playerTextBox);
-
-        isTyping = false;
-    }
-
-    // =========================
     // TYPE TEXT
-    // =========================
     IEnumerator TypeText(string text, TMP_Text textBox)
     {
         textBox.text = "";
@@ -118,40 +122,18 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
     }
 
-    // =========================
-    // INPUT (CLICK TO CONTINUE)
-    // =========================
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            // If typing → finish instantly
-            if (isTyping)
-            {
-                StopTyping();
-                return;
-            }
+        if (!Input.GetMouseButtonDown(0) || isTyping || isWaitingForChoice)
+            return;
 
-            if (currentNode == null) return;
+        if (currentNode == null)
+            return;
 
-            // If NPC just finished → go to Player
-            if (currentPhase == DialoguePhase.NPC &&
-                !string.IsNullOrEmpty(currentNode.playerText))
-            {
-                currentPhase = DialoguePhase.PLAYER;
-                typingRoutine = StartCoroutine(TypePlayer());
-            }
-            else
-            {
-                // Otherwise go to next node
-                GoToNextNode();
-            }
-        }
+        GoToNextNode();
     }
 
-    // =========================
-    // FLOW
-    // =========================
+    // NEXT NODE
     void GoToNextNode()
     {
         int next = currentNode.nextNode;
@@ -166,18 +148,29 @@ public class DialogueManager : MonoBehaviour
         DisplayNode();
     }
 
+    // CHOICE BUTTONS
     public void ChooseOption(int option)
     {
-        currentNodeIndex = (option == 1)
+        ui.HideChoices();
+
+        int next = (option == 1)
             ? currentNode.nextNodeForOption1
             : currentNode.nextNodeForOption2;
 
-        DisplayNode();
+        Debug.Log("CHOICE -> " + next);
+
+        currentNodeIndex = next;
+
+        StartCoroutine(ChoiceDelay());
     }
 
-    // =========================
+    IEnumerator ChoiceDelay()
+    {
+        yield return null; // wait one frame so the click doesn't bleed into Update()
+        isWaitingForChoice = false;
+        DisplayNode();
+    }
     // END
-    // =========================
     IEnumerator EndDialogue()
     {
         textBubbleUI.HideAll();
@@ -185,24 +178,24 @@ public class DialogueManager : MonoBehaviour
 
         cameraManager?.SetCamera(CameraManager.CamState.SCENE);
 
-        // Re-enable player movement
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+
         if (player != null)
         {
             var pm = player.GetComponent<PlayerMovement>();
-            if (pm) pm.enabled = true;
+
+            if (pm)
+                pm.enabled = true;
         }
 
-        // Scene transition
-        if (sceneLoader != null && !string.IsNullOrEmpty(nextSceneName))
+        if (sceneLoader != null &&
+            !string.IsNullOrEmpty(nextSceneName))
         {
             yield return sceneLoader.LoadSceneWithTransition(nextSceneName);
         }
     }
 
-    // =========================
-    // HELPERS
-    // =========================
+    // STOP TYPING
     void StopTyping()
     {
         if (typingRoutine != null)
@@ -210,11 +203,15 @@ public class DialogueManager : MonoBehaviour
 
         isTyping = false;
 
-        // Instantly fill text
-        if (currentPhase == DialoguePhase.NPC)
-            ui.npcTextBox.text = currentNode.npcText;
+        // Fill text instantly
+        if (currentPhase == DialoguePhase.NPC && currentNode != null)
+        {
+            TMP_Text npcBox = ui.GetNPCTextBox(currentNode.npcID);
+            if (npcBox != null)
+                npcBox.text = currentNode.npcText;
+        }
 
         if (currentPhase == DialoguePhase.PLAYER)
-            ui.playerTextBox.text = currentNode.playerText;
+            ui.playerTextBox.text = currentNode?.playerText;
     }
 }

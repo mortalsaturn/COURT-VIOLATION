@@ -26,34 +26,34 @@ public class SimpleDialogueManager : MonoBehaviour
     public string nextSceneName;
 
     [Header("Pause Menu")]
-    public GameObject pausePanel; // drag your panel here
+    public GameObject pausePanel;
 
     private int currentLineIndex = 0;
     private bool isTyping = false;
     private bool isPaused = false;
+    private bool isAdvanceLocked = false; // prevents click bleed from pause button
     private Coroutine typingRoutine;
 
     void Start()
     {
-        pausePanel.SetActive(false); // hide panel at start
+        pausePanel.SetActive(false);
         DisplayLine();
     }
 
     void Update()
     {
-        // 🚨 Stop all dialogue input if paused
         if (isPaused) return;
+        if (isAdvanceLocked) return;
 
-        // Click to continue
-        if (Input.GetMouseButtonDown(0) && !isTyping)
-        {
-            GoToNextLine();
-        }
-
-        // Click to finish typing instantly
         if (Input.GetMouseButtonDown(0) && isTyping)
         {
             StopTypingInstant();
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(0) && !isTyping)
+        {
+            GoToNextLine();
         }
     }
 
@@ -63,15 +63,28 @@ public class SimpleDialogueManager : MonoBehaviour
     public void OpenMenu()
     {
         isPaused = true;
+        isAdvanceLocked = true; // lock dialogue click for this frame
         pausePanel.SetActive(true);
-        Time.timeScale = 0f; // freeze game
+        Time.timeScale = 0f;
+
+        StartCoroutine(UnlockAfterFrame());
     }
 
     public void CloseMenu()
     {
         isPaused = false;
+        isAdvanceLocked = true; // lock dialogue click for this frame
         pausePanel.SetActive(false);
-        Time.timeScale = 1f; // resume game
+        Time.timeScale = 1f;
+
+        StartCoroutine(UnlockAfterFrame());
+    }
+
+    IEnumerator UnlockAfterFrame()
+    {
+        // WaitForSecondsRealtime works even when timeScale is 0
+        yield return new WaitForSecondsRealtime(0f);
+        isAdvanceLocked = false;
     }
 
     // =========================
@@ -106,7 +119,7 @@ public class SimpleDialogueManager : MonoBehaviour
         foreach (char c in text)
         {
             dialogueText.text += c;
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSecondsRealtime(typingSpeed); // realtime so pause doesn't freeze typing mid-sentence
         }
 
         isTyping = false;

@@ -28,20 +28,25 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("Match Scene");
     }
 
-    public void DialogueScene1()
+    public void DialogueScenePro()
     {
         SceneManager.LoadScene("Prologue");
     }
 
-    public void DialogueScene2()
+    public void DialogueSceneDe()
     {
         SceneManager.LoadScene("Debrief");
     }
 
-    public void DialogueScene3()
+    public void DialogueScene1()
     {
         SceneManager.LoadScene("Scene 1");
     }
+    public void DialogueScene2()
+    {
+        SceneManager.LoadScene("Scene 2");
+    }
+
 
     IEnumerator LoadLevel(int levelIndex)
     {

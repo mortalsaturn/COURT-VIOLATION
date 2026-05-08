@@ -53,7 +53,7 @@ public class MoveCapsuleNPC : MonoBehaviour
                 // camera switch
                 if (cameraManager != null)
                 {
-                    cameraManager.SetCamera(CameraManager.CamState.NPC);
+                    
                     player.transform.Rotate(0f, -90f, 0f);
                 }
 
