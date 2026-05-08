@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LilithStats
   m_EditorClassIdentifier: Assembly-CSharp::NewCharacterStats
   characterName: Lilith
-  baseSpeed: 5
+  baseSpeed: 8
   sprintModifier: 1.5
   jumpForce: 10
   quickStepDistance: 3

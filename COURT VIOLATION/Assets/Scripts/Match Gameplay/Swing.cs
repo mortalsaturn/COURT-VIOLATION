@@ -65,6 +65,7 @@ public class Swing : MonoBehaviour
         }
 
         hitbox = GetComponentInChildren<Hitbox>();
+        hitbox.OnHit += OnHit;
     }
 
     void Update()
@@ -146,13 +147,20 @@ public class Swing : MonoBehaviour
     {
         if (servingState == ServingState.Serving)
         {
+            ball.lastHitter = "";
             if (!isBallAirborne)
             {
                 ServeThrow();
             }
             else
             {
-                Smash();
+                hitbox.shotType = ShotType.BasicShot;
+
+                hitbox.launchVel = hasCharged
+                    ? Mathf.Min(stats.basicShotBaseVel + addedVelocity, stats.basicShotMaxVel)
+                    : stats.basicShotBaseVel;
+
+                BasicSwing();
             }
         }
         else
@@ -252,5 +260,40 @@ public class Swing : MonoBehaviour
         lobbing = stateInfo.IsName("Lob");
         dropShotting = stateInfo.IsName("DropShot");
         smashing = stateInfo.IsName("Smash");
+    }
+
+    private void OnHit()
+    {
+        servingState = ServingState.Playing;
+    }
+
+    public void AI_BasicSwing()
+    {
+        hitbox.shotType = ShotType.BasicShot;
+
+        basicSwinging = true;
+        hasCharged = false;
+        PerformSwing();
+        basicSwinging = false;
+    }
+
+    public void AI_Lob()
+    {
+        hitbox.shotType = ShotType.Lob;
+
+        lobbing = true;
+        hasCharged = false;
+        PerformSwing();
+        lobbing = false;
+    }
+
+    public void AI_DropShot()
+    {
+        hitbox.shotType = ShotType.DropShot;
+
+        dropShotting = true;
+        hasCharged = false;
+        PerformSwing();
+        dropShotting = false;
     }
 }
