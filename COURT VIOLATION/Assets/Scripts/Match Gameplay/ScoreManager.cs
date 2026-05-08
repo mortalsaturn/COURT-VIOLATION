@@ -85,7 +85,7 @@ public class ScoreManager : MonoBehaviour
             if (playerSets == 1)
             {
                 playerWinTMP.gameObject.SetActive(true);
-                sceneLoader.DialogueScene3();
+                sceneLoader.DialogueScene2();
             }
         }
         else
@@ -95,7 +95,7 @@ public class ScoreManager : MonoBehaviour
             if (enemySets == 1)
             {
                 enemyWinTMP.gameObject.SetActive(true);
-                sceneLoader.DialogueScene3();
+                sceneLoader.DialogueScene2();
             }
         }
     }
