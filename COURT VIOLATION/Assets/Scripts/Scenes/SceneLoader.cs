@@ -1,10 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class SceneLoader : MonoBehaviour
 {
-
     public Animator transition;
     public float transitionTime = 1f;
 
@@ -40,7 +39,7 @@ public class SceneLoader : MonoBehaviour
 
     public void DialogueScene1()
     {
-        SceneManager.LoadScene("Scene 1");
+        SceneManager.LoadScene("Scene 2");
     }
     public void DialogueScene2()
     {
@@ -57,6 +56,7 @@ public class SceneLoader : MonoBehaviour
 
         transition.SetTrigger("Start");
     }
+
     public IEnumerator LoadSceneWithTransition(string sceneName)
     {
         transition.SetTrigger("End");
@@ -64,5 +64,4 @@ public class SceneLoader : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
     }
-
 }

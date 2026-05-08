@@ -8,6 +8,8 @@ public class Hitbox : MonoBehaviour
     public ShotType shotType;
     public float launchVel;
     public List<Collider> hitAreas;
+    public delegate void Hit();
+    public event Hit OnHit;
 
     public string user;
 
@@ -36,6 +38,7 @@ public class Hitbox : MonoBehaviour
     public void Launch(Rigidbody rigidbody, Vector3 launchAngle, float launchVel)
     {
         rigidbody.linearVelocity = launchAngle.normalized * launchVel;
+        OnHit?.Invoke();
     }
 
     public Vector3 PredictLandingPoint(Rigidbody rb)
@@ -66,7 +69,7 @@ public class Hitbox : MonoBehaviour
         Collider hitArea,
         float pitchStep = 1f,
         float yawStep = 1f,
-        int maxIterations = 90
+        int maxIterations = 360
     )
     {
         float xMin = hitArea.bounds.min.x;
@@ -74,45 +77,91 @@ public class Hitbox : MonoBehaviour
         float zMin = hitArea.bounds.min.z;
         float zMax = hitArea.bounds.max.z;
 
+        Debug.Log("===== START AdjustLaunchAngle =====");
+
+        Debug.Log($"Target Bounds | X: [{xMin}, {xMax}] | Z: [{zMin}, {zMax}]");
+
+        Debug.Log(
+            $"Initial Forward: {hitbox.forward} | " + $"Initial Rotation: {hitbox.eulerAngles}"
+        );
+
         for (int i = 0; i < maxIterations; i++)
         {
             Vector3 landing = PredictLandingPoint(rb);
 
+            Debug.Log(
+                $"ITERATION {i}\n"
+                    + $"Landing: {landing}\n"
+                    + $"Forward: {hitbox.forward}\n"
+                    + $"Rotation: {hitbox.eulerAngles}\n"
+                    + $"Velocity: {rb.linearVelocity}\n"
+            );
+
             int distanceSign = 0;
 
-            // Check bounds
-            if (xMin <= landing.x && landing.x <= xMax && zMin <= landing.z && landing.z <= zMax)
+            bool insideBounds =
+                xMin <= landing.x && landing.x <= xMax && zMin <= landing.z && landing.z <= zMax;
+
+            if (insideBounds)
             {
-                Debug.Log($"Valid landing found after {i} iterations at {landing}");
+                Debug.Log(
+                    $"SUCCESS after {i} iterations\n"
+                        + $"Final Landing: {landing}\n"
+                        + $"Final Rotation: {hitbox.eulerAngles}"
+                );
+
                 return;
             }
 
+            // DEPTH CHECK
             if (landing.z < zMin)
+            {
                 distanceSign = -1;
+
+                Debug.Log($"Too SHORT | landing.z {landing.z} < zMin {zMin}");
+            }
             else if (landing.z > zMax)
+            {
                 distanceSign = 1;
 
+                Debug.Log($"Too FAR | landing.z {landing.z} > zMax {zMax}");
+            }
+
+            // PITCH ADJUSTMENT
             if (distanceSign != 0)
             {
                 int shotSign = (shotType == ShotType.Lob) ? -1 : 1;
+
                 float rotationAmount = distanceSign * shotSign * pitchStep;
+
+                Debug.Log($"Applying PITCH rotation: {rotationAmount}");
 
                 hitbox.Rotate(Vector3.right, rotationAmount, Space.Self);
             }
 
-            // Adjust yaw (left/right) based on X distance
+            // LEFT/RIGHT ADJUSTMENT
             if (landing.x < xMin)
-                hitbox.Rotate(Vector3.up, yawStep, Space.Self); // rotate left
-            else if (landing.x > xMax)
-                hitbox.Rotate(Vector3.up, -yawStep, Space.Self); // rotate right
+            {
+                Debug.Log($"Too LEFT | landing.x {landing.x} < xMin {xMin}");
 
-            // Update velocity to match new direction
+                hitbox.Rotate(Vector3.up, yawStep, Space.Self);
+            }
+            else if (landing.x > xMax)
+            {
+                Debug.Log($"Too RIGHT | landing.x {landing.x} > xMax {xMax}");
+
+                hitbox.Rotate(Vector3.up, -yawStep, Space.Self);
+            }
+
             Vector3 newDir = hitbox.forward;
             float speed = rb.linearVelocity.magnitude;
+
             rb.linearVelocity = newDir * speed;
         }
 
-        Debug.LogWarning("Could not find valid landing within limits.");
+        Debug.LogWarning("FAILED: Could not find valid landing within limits.");
+
+        Debug.Log($"Final Rotation: {hitbox.eulerAngles}");
     }
 
     public ShotData CreateShotData(Transform hitboxTransform)

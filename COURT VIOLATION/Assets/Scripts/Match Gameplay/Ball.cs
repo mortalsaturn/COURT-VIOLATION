@@ -18,11 +18,10 @@ public class Ball : MonoBehaviour
     public Vector3 predictedPoint;
     public Vector3 destination;
     public LayerMask destinationMask;
+    public Swing swing;
 
     [Header("Enemy")]
     public bool inEnemyZone;
-    public bool inEnemyHitRange;
-    public bool inEnemyWalkRange;
     public bool isApproachingEnemy;
     private bool pointOver;
 
@@ -40,6 +39,7 @@ public class Ball : MonoBehaviour
 
     void ResetBall()
     {
+        swing.servingState = ServingState.Serving;
         bounces = 0;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -52,8 +52,9 @@ public class Ball : MonoBehaviour
     {
         Vector3 velocity = rb.linearVelocity;
         Vector3 direction = velocity.normalized;
+        Vector3 flatDirection = new Vector3(direction.x, 0f, direction.z);
 
-        Ray trajectoryRay = new(transform.position, direction);
+        Ray trajectoryRay = new(transform.position, flatDirection);
         RaycastHit hit;
 
         if (
@@ -67,7 +68,7 @@ public class Ball : MonoBehaviour
         )
         {
             destination = hit.point;
-            Debug.DrawRay(transform.position, direction * 15, Color.red);
+            Debug.DrawRay(transform.position, flatDirection * 15, Color.red);
 
             isApproachingEnemy =
                 hit.collider.gameObject.layer == LayerMask.NameToLayer("EnemyHitRange");
@@ -94,6 +95,7 @@ public class Ball : MonoBehaviour
                 );
 
                 hitboxScript.Launch(rb, hitbox.transform.forward, hitboxScript.launchVel);
+                bounces = 0;
                 lastHitter = hitboxScript.user;
                 predictedPoint = hitboxScript.PredictLandingPoint(rb);
                 // Debug.Log("Predicted to land at: " + predictedPoint);
@@ -141,7 +143,10 @@ public class Ball : MonoBehaviour
         if (bounces == 2 && !pointOver)
         {
             pointOver = true;
-
+            if (inEnemyZone)
+            {
+                hitter = "Player";
+            }
             OnPointEnded?.Invoke(hitter);
         }
     }

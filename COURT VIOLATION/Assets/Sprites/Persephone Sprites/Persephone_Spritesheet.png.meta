@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -95,12 +95,342 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 3384
+        width: 170
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67096aa70ec367648b3b3e30b3c0d3f2
+      internalID: -801350883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 3382
+        width: 169
+        height: 364
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5151253c0b8660b4d8b68d8c596f10eb
+      internalID: 1571674549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 3030
+        width: 178
+        height: 334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace83fe02f9d94548bb9391cc6cf0a81
+      internalID: -1859830588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 3041
+        width: 337
+        height: 299
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dd7d5640c79ad04ca92b51d5fbeef54
+      internalID: -889307887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 1576
+        y: 3032
+        width: 178
+        height: 333
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2ec4ab183eeb6b4c8a17d30ce0b2b66
+      internalID: 1814524571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 2244
+        y: 3047
+        width: 337
+        height: 296
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c3e30a3dd00df949a620678784ec367
+      internalID: -1879842398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 2578
+        width: 197
+        height: 339
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fde2212ee772b7c4bbe4a18a8f8023d8
+      internalID: -734404174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 2567
+        width: 332
+        height: 361
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c58b62549b44246960139003a54e33
+      internalID: 1426363241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 2091
+        width: 216
+        height: 322
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d1914cb6ce31754d82d7790894f15e3
+      internalID: -1616576215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 2083
+        width: 299
+        height: 321
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c0e89887c12c0e48804cbb200247232
+      internalID: 1899706190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 1596
+        width: 304
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794270c03ea57f246b847f602eb90543
+      internalID: 1996952804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 1728
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f544b9ff43c0704dbcfcf3c4e2ad1f5
+      internalID: -1627849710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 1530
+        width: 264
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3989e97d5327945bf3e6f28afebe3e
+      internalID: 2103005317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 1129
+        width: 392
+        height: 293
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e2b3374924718a4f8e3af7aba91a739
+      internalID: 1879447923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Persephone_Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1089
+        width: 388
+        height: 373
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa0449671badabb4cbb3d771fcab959c
+      internalID: 1989513681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ba3ca6ac5fa0cd44fab99dbd7e23eb53
     internalID: 0
     vertices: []
     indices: 
@@ -108,8 +438,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Persephone_Spritesheet_0: -801350883
+      Persephone_Spritesheet_1: 1571674549
+      Persephone_Spritesheet_10: 1996952804
+      Persephone_Spritesheet_11: -1627849710
+      Persephone_Spritesheet_12: 2103005317
+      Persephone_Spritesheet_13: 1879447923
+      Persephone_Spritesheet_14: 1989513681
+      Persephone_Spritesheet_2: -1859830588
+      Persephone_Spritesheet_3: -889307887
+      Persephone_Spritesheet_4: 1814524571
+      Persephone_Spritesheet_5: -1879842398
+      Persephone_Spritesheet_6: -734404174
+      Persephone_Spritesheet_7: 1426363241
+      Persephone_Spritesheet_8: -1616576215
+      Persephone_Spritesheet_9: 1899706190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

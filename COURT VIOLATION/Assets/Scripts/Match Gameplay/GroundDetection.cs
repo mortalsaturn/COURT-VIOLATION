@@ -18,7 +18,6 @@ public class GroundDetection : MonoBehaviour
         {
             isGrounded = true;
             movement.animator.SetBool("isAirborne", false);
-            Debug.Log("Grounded");
         }
     }
 
@@ -37,7 +36,6 @@ public class GroundDetection : MonoBehaviour
         {
             isGrounded = false;
             movement.animator.SetBool("isAirborne", true);
-            Debug.Log("Airborne");
         }
     }
 }
