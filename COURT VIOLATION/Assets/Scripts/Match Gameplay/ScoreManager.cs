@@ -18,12 +18,19 @@ public class ScoreManager : MonoBehaviour
     public int playerSets;
     public int enemySets;
 
+    public GameObject nextSceneButton;
+
     public Ball ball;
+
+    public SceneLoader sceneLoader;
 
     void Start()
     {
         ball.OnPointEnded += HandlePointEnded;
+        playerScoreTMP.text = $"{playerScore}";
         playerSetsTMP.text = $"{setsText}{playerSets}";
+        enemyScoreTMP.text = $"{enemyScore}";
+        enemySetsTMP.text = $"{setsText}{enemySets}";
     }
 
     void HandlePointEnded(string lastHitter)
@@ -78,6 +85,7 @@ public class ScoreManager : MonoBehaviour
             if (playerSets == 2)
             {
                 playerWinTMP.gameObject.SetActive(true);
+                sceneLoader.DialogueScene3();
             }
         }
         else
@@ -87,6 +95,7 @@ public class ScoreManager : MonoBehaviour
             if (enemySets == 2)
             {
                 enemyWinTMP.gameObject.SetActive(true);
+                sceneLoader.DialogueScene3();
             }
         }
     }
